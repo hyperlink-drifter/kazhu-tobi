@@ -15,12 +15,24 @@ export default defineNuxtConfig({
     plugins: [tailwindcss()],
   },
 
-  modules: ['@nuxt/image', '@nuxtjs/i18n'],
+  modules: ['@nuxt/image', '@nuxtjs/i18n', 'shadcn-nuxt'],
 
   i18n: {
     vueI18n: '@@/i18n.config.ts',
     locales: ['en', 'uk', 'de'],
     defaultLocale: 'uk',
     strategy: 'prefix',
+  },
+
+  shadcn: {
+    /**
+     * Prefix for all the imported component
+     */
+    prefix: '',
+    /**
+     * Directory that the component lives in.
+     * @default "./components/ui"
+     */
+    componentDir: './app/components/ui',
   },
 });
