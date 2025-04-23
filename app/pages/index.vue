@@ -1,6 +1,10 @@
+<script setup lang="ts">
+const { t } = useI18n();
+</script>
+
 <template>
   <div>
     <NuxtRouteAnnouncer />
-    <NuxtWelcome />
+    <h1>{{ t('welcome') }}</h1>
   </div>
 </template>

@@ -8,5 +8,12 @@ export default defineNuxtConfig({
     compatibilityVersion: 4,
   },
 
-  modules: ['@nuxt/image'],
+  modules: ['@nuxt/image', '@nuxtjs/i18n'],
+
+  i18n: {
+    vueI18n: '@@/i18n.config.ts',
+    locales: ['en', 'uk', 'de'],
+    defaultLocale: 'uk',
+    strategy: 'prefix',
+  },
 });
