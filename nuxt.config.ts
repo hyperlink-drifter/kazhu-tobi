@@ -15,7 +15,9 @@ export default defineNuxtConfig({
     plugins: [tailwindcss()],
   },
 
-  modules: ['@nuxt/image', '@nuxtjs/i18n', 'shadcn-nuxt'],
+  modules: ['@nuxt/image', '@nuxtjs/i18n', 'shadcn-nuxt', '@nuxthub/core'],
+
+  hub: {},
 
   i18n: {
     vueI18n: '@@/i18n.config.ts',
