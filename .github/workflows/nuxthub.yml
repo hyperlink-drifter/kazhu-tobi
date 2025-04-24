@@ -39,4 +39,4 @@ jobs:
         uses: nuxt-hub/action@v1
         id: deploy
         with:
-          project-key: kazhu-tobi-n9my
+          project-key: kazhu-tobi-wy7m
