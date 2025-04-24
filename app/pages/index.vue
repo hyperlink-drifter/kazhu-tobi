@@ -4,7 +4,6 @@ const { t } = useI18n();
 
 <template>
   <div>
-    <NuxtRouteAnnouncer />
     <h1 class="text-gray-800">{{ t('welcome') }}</h1>
   </div>
 </template>
