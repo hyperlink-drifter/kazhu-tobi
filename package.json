@@ -7,8 +7,9 @@
     "start": "node .output/server/index.mjs ",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
-    "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "preview": "npx nuxthub preview",
+    "deploy": "npx nuxthub deploy"
   },
   "dependencies": {
     "@nuxt/image": "1.10.0",
@@ -29,5 +30,13 @@
   },
   "devDependencies": {
     "wrangler": "^4.13.0"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@parcel/watcher",
+      "esbuild",
+      "sharp",
+      "workerd"
+    ]
   }
 }
