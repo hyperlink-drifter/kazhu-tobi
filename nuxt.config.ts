@@ -20,10 +20,14 @@ export default defineNuxtConfig({
   hub: {},
 
   i18n: {
-    vueI18n: '@@/i18n.config.ts',
-    locales: ['en', 'uk', 'de'],
     defaultLocale: 'uk',
-    strategy: 'prefix',
+    strategy: 'prefix_and_default',
+    detectBrowserLanguage: false,
+    locales: [
+      { code: 'en', name: 'English', file: 'en.json' },
+      { code: 'uk', name: 'українська', file: 'uk.json' },
+      { code: 'de', name: 'Deutsch', file: 'de.json' },
+    ],
   },
 
   shadcn: {
