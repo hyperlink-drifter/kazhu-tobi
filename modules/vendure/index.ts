@@ -38,7 +38,5 @@ export default defineNuxtModule({
       },
       nuxt.options['graphql-client']
     );
-
-    console.info(nuxt.options['graphql-client']);
   },
 });
