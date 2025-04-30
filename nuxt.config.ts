@@ -15,7 +15,13 @@ export default defineNuxtConfig({
     plugins: [tailwindcss()],
   },
 
-  modules: ['@nuxt/image', '@nuxtjs/i18n', 'shadcn-nuxt', '@nuxthub/core'],
+  modules: [
+    '@nuxt/image',
+    '@nuxtjs/i18n',
+    'shadcn-nuxt',
+    '@nuxthub/core',
+    'nuxt-graphql-client',
+  ],
 
   hub: {},
 
