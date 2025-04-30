@@ -1,7 +1,14 @@
 import { defineNuxtModule } from '@nuxt/kit';
 import { defu } from 'defu';
 
-export default defineNuxtModule({
+export interface ModuleOptions {
+  endpoints?: {
+    shop?: string;
+    admin?: string;
+  };
+}
+
+export default defineNuxtModule<ModuleOptions>({
   meta: {
     // Usually the npm package name of your module
     name: '@hyperlinkdrifter/vendure-nuxt',
@@ -19,7 +26,7 @@ export default defineNuxtModule({
   hooks: {},
   // The function holding your module logic, it can be asynchronous
   setup(options, nuxt) {
-    if (!process.env.VENDURE_GRAPHQL_API_URL) {
+    if (!options.endpoints?.shop) {
       console.warn(
         `[nuxt-vendure] Environment Variable 'VENDURE_GRAPHQL_API_URL' missing.`
       );
@@ -29,10 +36,8 @@ export default defineNuxtModule({
       {
         documentPaths: ['../modules/vendure/graphql'],
         clients: {
-          vendure: {
-            host: process.env.VENDURE_GRAPHQL_API_URL
-              ? process.env.VENDURE_GRAPHQL_API_URL
-              : '',
+          vendure_shop: {
+            host: options.endpoints?.shop ? options.endpoints?.shop : '',
           },
         },
       },

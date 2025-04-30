@@ -25,6 +25,12 @@ export default defineNuxtConfig({
 
   hub: {},
 
+  vendure: {
+    endpoints: {
+      shop: process.env.VENDURE_GRAPHQL_API_URL,
+    },
+  },
+
   i18n: {
     defaultLocale: 'uk',
     strategy: 'prefix_and_default',
