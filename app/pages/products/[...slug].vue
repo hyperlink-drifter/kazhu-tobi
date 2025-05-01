@@ -12,7 +12,7 @@ if (!route.params.slug?.length || !route.params.slug[0]) {
 
 const slug = route.params.slug[0];
 
-const { data, status } = await useLazyAsyncData('product', () =>
+const { data, status } = await useLazyAsyncData(`product-${slug}`, () =>
   GqlGetProduct({
     slug,
   })
