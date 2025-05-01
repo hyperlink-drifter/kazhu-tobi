@@ -17,10 +17,12 @@ const { data, status } = await useLazyAsyncData(`product-${slug}`, () =>
     slug,
   })
 );
+
+const product = computed(() => data?.value?.product);
 </script>
 
 <template>
   <div class="max-w-7xl px-6 text-center mx-auto">
-    {{ status === 'pending' ? 'Loading' : data?.product }}
+    {{ status === 'pending' ? 'Loading' : product }}
   </div>
 </template>
