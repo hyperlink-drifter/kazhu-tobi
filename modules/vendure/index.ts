@@ -25,19 +25,13 @@ export default defineNuxtModule<ModuleOptions>({
   // Shorthand sugar to register Nuxt hooks
   hooks: {},
   // The function holding your module logic, it can be asynchronous
-  setup(options, nuxt) {
-    if (!options.endpoints?.shop) {
-      console.warn(
-        `[nuxt-vendure] Environment Variable 'VENDURE_GRAPHQL_API_URL' missing.`
-      );
-    }
-
+  setup(_, nuxt) {
     nuxt.options['graphql-client'] = defu(
       {
         documentPaths: ['../modules/vendure/graphql'],
         clients: {
-          vendure_shop: {
-            host: options.endpoints?.shop ? options.endpoints?.shop : '',
+          vshop: {
+            host: 'https://vendure.hyperlinkdrifter.com/shop-api',
           },
         },
       },
