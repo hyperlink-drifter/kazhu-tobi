@@ -1,7 +1,5 @@
 <script setup lang="ts">
 const route = useRoute();
-const router = useRouter();
-const config = useRuntimeConfig();
 
 if (!route.params.slug?.length || !route.params.slug[0]) {
   throw createError({
@@ -22,7 +20,14 @@ const product = computed(() => data?.value?.product);
 </script>
 
 <template>
-  <div class="max-w-7xl px-6 text-center mx-auto">
-    {{ status === 'pending' ? 'Loading' : product }}
+  <div class="">
+    <div v-if="status === 'pending'">Loading ...</div>
+    <div v-else>
+      <ProductImageGallery
+        v-if="product?.assets"
+        :images="product?.assets"
+        :title="product.name"
+      />
+    </div>
   </div>
 </template>

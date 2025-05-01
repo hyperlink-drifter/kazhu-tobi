@@ -14,5 +14,8 @@ query getProduct($id: ID, $slug: String) {
     id
     name
     slug
+    assets {
+      source
+    }
   }
 }
