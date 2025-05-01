@@ -1,9 +1,10 @@
-query getProducts {
-  products {
+query getProducts($skip: Int, $take: Int) {
+  products(options: { skip: $skip, take: $take }) {
     totalItems
     items {
       id
       name
+      slug
     }
   }
 }
