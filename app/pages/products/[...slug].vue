@@ -20,14 +20,15 @@ const product = computed(() => data?.value?.product);
 </script>
 
 <template>
-  <div class="">
+  <div class="grid grid-cols-16 gap-y-0 lg:gap-10">
     <div v-if="status === 'pending'">Loading ...</div>
-    <div v-else>
+    <template v-else>
       <ProductImageGallery
         v-if="product?.assets"
         :images="product?.assets"
         :title="product.name"
+        class="col-span-16 lg:col-span-11"
       />
-    </div>
+    </template>
   </div>
 </template>
