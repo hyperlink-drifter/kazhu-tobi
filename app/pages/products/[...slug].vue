@@ -20,7 +20,7 @@ const product = computed(() => data?.value?.product);
 </script>
 
 <template>
-  <div class="grid grid-cols-12 gap-4">
+  <div class="grid grid-cols-12 gap-2 sm:gap-4">
     <div v-if="status === 'pending'">Loading ...</div>
     <template v-else>
       <ProductImageGallery

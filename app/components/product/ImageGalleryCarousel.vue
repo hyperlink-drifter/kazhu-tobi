@@ -1,12 +1,14 @@
 <script setup lang="ts">
 import type { CarouselApi } from '@/components/ui/carousel';
-import { watchOnce } from '@vueuse/core';
+import { watchOnce, useMediaQuery } from '@vueuse/core';
 
 defineProps<{ images: any[]; title?: string }>();
 
 const emblaMainApi = ref<CarouselApi>();
 const emblaThumbnailApi = ref<CarouselApi>();
 const selectedIndex = ref(0);
+
+const isMdScreen = useMediaQuery('(min-width: 768px)');
 
 function onSelect() {
   if (!emblaMainApi.value || !emblaThumbnailApi.value) return;
@@ -32,7 +34,7 @@ watchOnce(emblaMainApi, (emblaMainApi) => {
   <div data-slot="product-image-carousel">
     <Carousel
       @init-api="(val) => (emblaMainApi = val)"
-      class="relative w-full col-span-12"
+      class="relative w-full col-span-12 md:col-span-10"
     >
       <CarouselContent>
         <CarouselItem v-for="(image, index) in images" :key="image.id">
@@ -50,10 +52,11 @@ watchOnce(emblaMainApi, (emblaMainApi) => {
       <CarouselNext class="hover:bg-transparent" />
     </Carousel>
     <Carousel
-      class="relative w-full col-span-12"
+      :orientation="isMdScreen ? 'vertical' : 'horizontal'"
       @init-api="(val) => (emblaThumbnailApi = val)"
+      class="relative w-full col-span-12 md:col-span-2 md:order-first"
     >
-      <CarouselContent class="flex gap-1 ml-0">
+      <CarouselContent class="flex md:flex-col gap-1 ml-0">
         <CarouselItem
           v-for="(image, index) in images"
           :key="`thumbnail-${image.id}`"
