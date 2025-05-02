@@ -10,7 +10,7 @@ if (!route.params.slug?.length || !route.params.slug[0]) {
 
 const slug = route.params.slug[0];
 
-const { data, status } = await useLazyAsyncData(`product-${slug}`, () =>
+const { data } = await useAsyncData(`product-${slug}`, () =>
   GqlGetProduct({
     slug,
   })
@@ -21,13 +21,10 @@ const product = computed(() => data?.value?.product);
 
 <template>
   <div class="grid grid-cols-12 gap-2 sm:gap-4">
-    <div v-if="status === 'pending'">Loading ...</div>
-    <template v-else>
-      <ProductImageGallery
-        v-if="product?.assets"
-        :images="product?.assets"
-        :title="product.name"
-      />
-    </template>
+    <ProductImageGallery
+      v-if="product?.assets"
+      :images="product?.assets"
+      :title="product.name"
+    />
   </div>
 </template>
