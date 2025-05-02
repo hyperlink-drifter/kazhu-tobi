@@ -8,11 +8,12 @@ defineProps<{ product: VendureProduct }>();
       :src="product?.featuredAsset?.source"
       :preload="true"
       loading="eager"
+      class="w-full"
     />
     <NuxtImg
-      class="opacity-0 group-hover:pointer-fine:opacity-100 absolute top-0"
       :src="product?.assets?.[1]?.source"
       loading="lazy"
+      class="opacity-0 group-hover:pointer-fine:opacity-100 absolute top-0 w-full"
     />
   </AspectRatio>
 </template>
