@@ -29,8 +29,11 @@ watchOnce(emblaMainApi, (emblaMainApi) => {
 </script>
 
 <template>
-  <div>
-    <Carousel @init-api="(val) => (emblaMainApi = val)" class="relative w-full">
+  <div data-slot="product-image-carousel">
+    <Carousel
+      @init-api="(val) => (emblaMainApi = val)"
+      class="relative w-full col-span-12"
+    >
       <CarouselContent>
         <CarouselItem v-for="(image, index) in images" :key="image.id">
           <NuxtImg
@@ -47,7 +50,7 @@ watchOnce(emblaMainApi, (emblaMainApi) => {
       <CarouselNext class="hover:bg-transparent" />
     </Carousel>
     <Carousel
-      class="relative w-full"
+      class="relative w-full col-span-12"
       @init-api="(val) => (emblaThumbnailApi = val)"
     >
       <CarouselContent class="flex gap-1 ml-0">

@@ -3,19 +3,16 @@ defineProps<{ images: any[]; title?: string }>();
 </script>
 
 <template>
-  <div>
-    <div class="hidden lg:grid grid-flow-row-dense grid-cols-2 gap-4">
-      <template v-for="(image, index) in images" :key="image.id">
-        <NuxtImg
-          :src="image.source"
-          :alt="`Image ${index + 1} of - ${title}`"
-          :preload="true"
-          loading="eager"
-          fetch-priority="high"
-          class="w-full"
-        />
-      </template>
-    </div>
-    <ProductImageCarousel :images="images" :title="title" class="lg:hidden" />
+  <div class="grid grid-cols-subgrid col-span-12 lg:col-span-8 gap-4">
+    <ProductImageGrid
+      :images="images"
+      :title="title"
+      class="hidden lg:grid lg:grid-cols-subgrid lg:col-span-8 gap-4"
+    />
+    <ProductImageCarousel
+      :images="images"
+      :title="title"
+      class="lg:hidden grid grid-cols-subgrid col-span-12 gap-4"
+    />
   </div>
 </template>
