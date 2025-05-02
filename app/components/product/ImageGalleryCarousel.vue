@@ -48,8 +48,6 @@ watchOnce(emblaMainApi, (emblaMainApi) => {
           />
         </CarouselItem>
       </CarouselContent>
-      <CarouselPrevious class="hover:bg-transparent" />
-      <CarouselNext class="hover:bg-transparent" />
     </Carousel>
     <Carousel
       :orientation="isMdScreen ? 'vertical' : 'horizontal'"
