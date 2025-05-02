@@ -54,7 +54,7 @@ watchOnce(emblaMainApi, (emblaMainApi) => {
       @init-api="(val) => (emblaThumbnailApi = val)"
       class="relative w-full col-span-12 md:col-span-2 md:order-first"
     >
-      <CarouselContent class="flex md:flex-col gap-1 ml-0">
+      <CarouselContent class="flex flex-row md:flex-col gap-1 ml-0">
         <CarouselItem
           v-for="(image, index) in images"
           :key="`thumbnail-${image.id}`"
