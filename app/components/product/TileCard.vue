@@ -14,18 +14,7 @@ const computedPrice = computed(() => {});
     class="block h-full"
   >
     <Card class="h-full py-0 rounded-none shadow-none border-none gap-4">
-      <AspectRatio :ratio="4 / 5" class="group">
-        <NuxtImg
-          :src="product?.featuredAsset?.source"
-          :preload="true"
-          loading="eager"
-        />
-        <NuxtImg
-          class="opacity-0 group-hover:pointer-fine:opacity-100 absolute top-0"
-          :src="product?.assets?.[1]?.source"
-          loading="lazy"
-        />
-      </AspectRatio>
+      <ProductTileCardFigure :product="product" />
       <CardHeader class="px-0">
         <CardTitle>{{ product?.name }}</CardTitle>
       </CardHeader>
