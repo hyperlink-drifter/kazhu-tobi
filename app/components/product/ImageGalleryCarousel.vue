@@ -38,14 +38,15 @@ watchOnce(emblaMainApi, (emblaMainApi) => {
     >
       <CarouselContent>
         <CarouselItem v-for="(image, index) in images" :key="image.id">
-          <NuxtImg
-            :src="image.source"
-            :alt="`Image ${index + 1} of - ${title}`"
-            :preload="index === 0 ? true : false"
-            :loading="index === 0 ? 'eager' : 'lazy'"
-            :fetch-priority="index === 0 ? 'high' : 'low'"
-            class="w-full"
-          />
+          <AspectRatio :ratio="4 / 5">
+            <NuxtImg
+              :src="image.source"
+              :preload="index === 0 ? true : false"
+              :loading="index === 0 ? 'eager' : 'lazy'"
+              :fetch-priority="index === 0 ? 'high' : 'low'"
+              class="w-full"
+            />
+          </AspectRatio>
         </CarouselItem>
       </CarouselContent>
     </Carousel>
@@ -62,14 +63,15 @@ watchOnce(emblaMainApi, (emblaMainApi) => {
           @click="onThumbClick(index)"
         >
           <div class="p-1" :class="index === selectedIndex ? '' : 'opacity-50'">
-            <NuxtImg
-              :src="`${image.source}?preset=thumb`"
-              :alt="`Image ${index + 1} of - ${title}`"
-              :preload="true"
-              loading="eager"
-              fetch-priority="high"
-              class="w-full"
-            />
+            <AspectRatio :ratio="4 / 5">
+              <NuxtImg
+                :src="`${image.source}?preset=thumb`"
+                :preload="true"
+                loading="eager"
+                fetch-priority="high"
+                class="w-full h-full object-cover"
+              />
+            </AspectRatio>
           </div>
         </CarouselItem>
       </CarouselContent>
