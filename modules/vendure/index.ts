@@ -1,4 +1,4 @@
-import { defineNuxtModule } from '@nuxt/kit';
+import { defineNuxtModule, createResolver, addImportsDir } from '@nuxt/kit';
 import { defu } from 'defu';
 
 export interface ModuleOptions {
@@ -26,6 +26,9 @@ export default defineNuxtModule<ModuleOptions>({
   hooks: {},
   // The function holding your module logic, it can be asynchronous
   setup(_, nuxt) {
+    const { resolve } = createResolver(import.meta.url);
+    addImportsDir(resolve('types'));
+
     nuxt.options['graphql-client'] = defu(
       {
         documentPaths: ['../modules/vendure/graphql'],
