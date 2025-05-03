@@ -14,7 +14,7 @@ const props = defineProps<Props>();
     :class="cn('grid grid-cols-(--the-center-grid-cols)', props.class)"
   >
     <div class="grid col-start-2 col-end-3">
-      <slot name="center" />
+      <slot />
     </div>
   </section>
 </template>
