@@ -2,7 +2,7 @@
 import type { HTMLAttributes } from 'vue';
 import { navigationMenuTriggerStyle } from '@/components/ui/navigation-menu';
 import { breakpointsTailwind, useBreakpoints } from '@vueuse/core';
-import { Menu } from 'lucide-vue-next';
+import { Menu, CircleX } from 'lucide-vue-next';
 
 interface Props {
   class?: HTMLAttributes['class'];
@@ -26,10 +26,11 @@ const localeCollections = computed(() => {
 
 const isSheetOpen = ref(false);
 const breakpoints = useBreakpoints(breakpointsTailwind);
-const lgAndLarger = breakpoints.greaterOrEqual('lg');
+const isLgAndLarger = breakpoints.greaterOrEqual('lg');
+const isSmallerThanLg = breakpoints.smaller('lg');
 
-watch(lgAndLarger, (lgAndLarger) => {
-  if (lgAndLarger === true) {
+watch(isLgAndLarger, (isLgAndLarger) => {
+  if (isLgAndLarger) {
     isSheetOpen.value = false;
   }
 });
@@ -37,43 +38,58 @@ watch(lgAndLarger, (lgAndLarger) => {
 
 <template>
   <Sheet v-model:open="isSheetOpen">
-    <SheetTrigger class="lg:hidden">
+    <SheetTrigger :hidden="isLgAndLarger" class="lg:hidden">
       <Menu />
     </SheetTrigger>
-    <SheetContent side="left" class="inset-2 w-auto h-auto">
-      <SheetHeader>
-        <SheetTitle>Are you absolutely sure?</SheetTitle>
-        <SheetDescription>
-          This action cannot be undone. This will permanently delete your
-          account and remove your data from our servers.
-        </SheetDescription>
-      </SheetHeader>
+    <SheetContent
+      :hidden="isLgAndLarger"
+      side="left"
+      class="inset-2 w-auto h-auto lg:hidden"
+    >
+      <SheetClose
+        class="w-fit p-2 ring-offset-background data-[state=open]:bg-secondary rounded-xs opacity-70 transition-opacity hover:opacity-100 disabled:pointer-events-none"
+      >
+        <CircleX class="size-8" />
+        <span class="sr-only">Close</span>
+      </SheetClose>
+      <NavigationMenu orientation="vertical" class="flex-0">
+        <NavigationMenuList class="flex flex-col items-start">
+          <NavigationMenuItem
+            v-for="collection in localeCollections"
+            :key="`burger-menu-${collection?.slug}`"
+          >
+            <NuxtLink
+              custom
+              v-slot="{ isActive, href, navigate }"
+              :to="
+                $localePath({
+                  name: 'collections-slug',
+                  params: {
+                    slug: collection?.slug,
+                  },
+                })
+              "
+            >
+              <NavigationMenuLink
+                :active="isActive"
+                :href
+                :class="navigationMenuTriggerStyle()"
+                @click="navigate"
+              >
+                {{ collection?.name }}
+              </NavigationMenuLink>
+            </NuxtLink>
+          </NavigationMenuItem>
+        </NavigationMenuList>
+      </NavigationMenu>
     </SheetContent>
   </Sheet>
-  <NavigationMenu class="hidden lg:flex">
+  <NavigationMenu :hidden="isSmallerThanLg" class="hidden lg:flex">
     <NavigationMenuList>
-      <NavigationMenuItem>
-        <NuxtLink
-          custom
-          v-slot="{ isActive, href, navigate }"
-          :to="
-            $localePath({
-              name: 'products',
-            })
-          "
-        >
-          <NavigationMenuLink
-            :active="isActive"
-            :href
-            :class="navigationMenuTriggerStyle()"
-            @click="navigate"
-          >
-            {{ $t('products') }}
-          </NavigationMenuLink>
-        </NuxtLink>
-      </NavigationMenuItem>
-
-      <NavigationMenuItem v-for="collection in localeCollections">
+      <NavigationMenuItem
+        v-for="collection in localeCollections"
+        :key="`menu-${collection?.slug}`"
+      >
         <NuxtLink
           custom
           v-slot="{ isActive, href, navigate }"
