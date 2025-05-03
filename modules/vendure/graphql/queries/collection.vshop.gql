@@ -1,0 +1,14 @@
+query getTopLevelCollections {
+  collections(options: { topLevelOnly: true }) {
+    items {
+      languageCode
+      name
+      slug
+      translations {
+        languageCode
+        name
+        slug
+      }
+    }
+  }
+}
