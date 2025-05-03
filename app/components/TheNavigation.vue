@@ -1,12 +1,14 @@
 <script lang="ts" setup>
 import type { HTMLAttributes } from 'vue';
 import { navigationMenuTriggerStyle } from '@/components/ui/navigation-menu';
+import { breakpointsTailwind, useBreakpoints } from '@vueuse/core';
+import { Menu } from 'lucide-vue-next';
 
 interface Props {
   class?: HTMLAttributes['class'];
 }
 
-const props = defineProps<Props>();
+defineProps<Props>();
 
 const { locale } = useI18n();
 
@@ -21,10 +23,34 @@ const localeCollections = computed(() => {
     c.translations.find((t) => t.languageCode === locale.value)
   );
 });
+
+const isSheetOpen = ref(false);
+const breakpoints = useBreakpoints(breakpointsTailwind);
+const lgAndLarger = breakpoints.greaterOrEqual('lg');
+
+watch(lgAndLarger, (lgAndLarger) => {
+  if (lgAndLarger === true) {
+    isSheetOpen.value = false;
+  }
+});
 </script>
 
 <template>
-  <NavigationMenu :class="cn(props.class)">
+  <Sheet v-model:open="isSheetOpen">
+    <SheetTrigger class="lg:hidden">
+      <Menu />
+    </SheetTrigger>
+    <SheetContent side="left" class="inset-2 w-auto h-auto">
+      <SheetHeader>
+        <SheetTitle>Are you absolutely sure?</SheetTitle>
+        <SheetDescription>
+          This action cannot be undone. This will permanently delete your
+          account and remove your data from our servers.
+        </SheetDescription>
+      </SheetHeader>
+    </SheetContent>
+  </Sheet>
+  <NavigationMenu class="hidden lg:flex">
     <NavigationMenuList>
       <NavigationMenuItem>
         <NuxtLink
