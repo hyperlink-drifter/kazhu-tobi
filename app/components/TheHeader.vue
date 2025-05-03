@@ -13,6 +13,7 @@ const props = defineProps<Props>();
     <header :class="cn('flex justify-between', props.class)">
       <slot>
         <TheNavigation />
+        <TheLocaleSelector />
       </slot>
     </header>
   </LayoutCenter>
