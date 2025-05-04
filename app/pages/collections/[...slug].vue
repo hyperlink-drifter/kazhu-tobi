@@ -10,24 +10,29 @@ if (!route.params.slug?.length || !route.params.slug[0]) {
 
 const slug = route.params.slug[0];
 
-const { data } = await useAsyncData(`collection-products-${slug}`, () =>
-  GqlGetCollectionProducts({
-    slug,
-  })
+const { data: searchResponse } = await useAsyncData(
+  `collection-products-${slug}`,
+  () =>
+    GqlGetCollectionProducts({
+      slug,
+    })
 );
 
-const collectionProducts = computed(() => data?.value?.search);
+const collectionProducts = computed(() => searchResponse?.value?.search);
 
-const products = computed(() =>
-  collectionProducts.value?.items.map(
-    (i) =>
-      ({
-        slug: i.slug,
-        name: i.productName,
-        featuredAsset: i.productAsset,
-      } as VendureProduct)
-  )
+const { data: productList } = await useAsyncData(
+  `collection-products-full-${slug}`,
+  () =>
+    GqlGetProducts({
+      filter: {
+        id: {
+          in: collectionProducts.value?.items.map((i) => i.productId),
+        },
+      },
+    })
 );
+
+const products = computed(() => productList.value?.products.items);
 </script>
 
 <template>

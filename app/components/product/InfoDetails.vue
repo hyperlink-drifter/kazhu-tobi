@@ -3,7 +3,7 @@ const props = defineProps<{ product: VendureProduct }>();
 
 const { locale } = useI18n();
 
-const product = computed(() =>
+const translation = computed(() =>
   props.product?.translations.find((t) => t.languageCode === locale.value)
 );
 </script>
@@ -14,9 +14,9 @@ const product = computed(() =>
       class="col-span-12 lg:col-span-4 prose prose-sm sm:prose-base lg:prose-lg dark:prose-invert"
     >
       <h1>
-        {{ product?.name }}
+        {{ translation?.name }}
       </h1>
-      <div v-html="product?.description" />
+      <div v-html="translation?.description" />
     </div>
   </div>
 </template>

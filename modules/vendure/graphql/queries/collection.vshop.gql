@@ -37,6 +37,7 @@ query GetCollectionProducts($slug: String!, $skip: Int, $take: Int) {
   ) {
     totalItems
     items {
+      productId
       productName
       slug
       productAsset {

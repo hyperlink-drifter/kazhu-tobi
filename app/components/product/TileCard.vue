@@ -1,6 +1,11 @@
 <script lang="ts" setup>
 const props = defineProps<{ product: VendureProduct }>();
-const computedPrice = computed(() => {});
+
+const { locale } = useI18n();
+
+const translation = computed(() =>
+  props.product?.translations.find((t) => t.languageCode === locale.value)
+);
 </script>
 
 <template>
@@ -16,10 +21,12 @@ const computedPrice = computed(() => {});
     <Card class="h-full py-0 rounded-none shadow-none border-none gap-4">
       <ProductTileCardFigure :product="product" />
       <CardHeader class="px-0">
-        <CardTitle>{{ product?.name }}</CardTitle>
+        <CardTitle>{{ translation?.name }}</CardTitle>
       </CardHeader>
       <CardContent class="px-0">
-        <CardDescription>Card Description</CardDescription>
+        <CardDescription>
+          <div class="prose prose-sm" v-html="translation?.description"></div>
+        </CardDescription>
       </CardContent>
     </Card>
   </NuxtLink>

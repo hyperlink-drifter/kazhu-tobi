@@ -1,10 +1,11 @@
-query getProducts($skip: Int, $take: Int) {
-  products(options: { skip: $skip, take: $take }) {
+query GetProducts($skip: Int, $take: Int, $filter: ProductFilterParameter) {
+  products(options: { skip: $skip, take: $take, filter: $filter }) {
     totalItems
     items {
       id
       name
       slug
+      description
       featuredAsset {
         id
         source
@@ -15,11 +16,18 @@ query getProducts($skip: Int, $take: Int) {
         source
         preview
       }
+      translations {
+        id
+        slug
+        name
+        description
+        languageCode
+      }
     }
   }
 }
 
-query getProduct($id: ID, $slug: String) {
+query GetProduct($id: ID, $slug: String) {
   product(id: $id, slug: $slug) {
     id
     name
