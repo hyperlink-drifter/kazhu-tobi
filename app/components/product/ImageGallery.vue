@@ -3,7 +3,7 @@ defineProps<{ images: any[]; title?: string }>();
 </script>
 
 <template>
-  <div class="grid grid-cols-subgrid col-span-12 lg:col-span-8 gap-2 sm:gap-4">
+  <div>
     <ProductImageGalleryGrid
       :images="images"
       :title="title"

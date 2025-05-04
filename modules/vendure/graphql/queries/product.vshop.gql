@@ -24,6 +24,7 @@ query getProduct($id: ID, $slug: String) {
     id
     name
     slug
+    description
     featuredAsset {
       id
       source
@@ -33,6 +34,13 @@ query getProduct($id: ID, $slug: String) {
       id
       source
       preview
+    }
+    translations {
+      id
+      slug
+      name
+      description
+      languageCode
     }
   }
 }

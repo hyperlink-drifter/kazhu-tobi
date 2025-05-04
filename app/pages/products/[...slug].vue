@@ -26,6 +26,11 @@ const product = computed(() => data?.value?.product);
         v-if="product?.assets"
         :images="product?.assets"
         :title="product.name"
+        class="grid grid-cols-subgrid col-span-12 lg:col-span-8 gap-2 sm:gap-4"
+      />
+      <ProductInfoDetails
+        :product="product"
+        class="grid grid-cols-subgrid col-span-12 lg:col-span-4 gap-2 sm:gap-4"
       />
     </div>
   </LayoutCenter>
