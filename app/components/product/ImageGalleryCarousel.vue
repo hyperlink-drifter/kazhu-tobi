@@ -51,7 +51,6 @@ watchOnce(emblaMainApi, (emblaMainApi) => {
       </CarouselContent>
     </Carousel>
     <Carousel
-      :orientation="isMdScreen ? 'vertical' : 'horizontal'"
       @init-api="(val) => (emblaThumbnailApi = val)"
       class="relative w-full col-span-12 md:col-span-2 md:order-first"
     >
