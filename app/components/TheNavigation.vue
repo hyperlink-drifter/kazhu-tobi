@@ -39,10 +39,10 @@ watch(isLgAndLarger, (isLgAndLarger) => {
   <Drawer v-model:open="isDrawerOpen">
     <DrawerTrigger class="lg:hidden" as-child>
       <Button variant="ghost" size="icon">
-        <AlignJustify />
+        <AlignJustify class="size-6" />
       </Button>
     </DrawerTrigger>
-    <DrawerContent class="">
+    <DrawerContent>
       <div class="p-4">
         <NavigationMenu
           orientation="vertical"
