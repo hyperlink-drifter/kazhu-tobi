@@ -27,7 +27,6 @@ const localeCollections = computed(() => {
 const isSheetOpen = ref(false);
 const breakpoints = useBreakpoints(breakpointsTailwind);
 const isLgAndLarger = breakpoints.greaterOrEqual('lg');
-const isSmallerThanLg = breakpoints.smaller('lg');
 
 watch(isLgAndLarger, (isLgAndLarger) => {
   if (isLgAndLarger) {
@@ -38,14 +37,10 @@ watch(isLgAndLarger, (isLgAndLarger) => {
 
 <template>
   <Sheet v-model:open="isSheetOpen">
-    <SheetTrigger :hidden="isLgAndLarger" class="lg:hidden">
+    <SheetTrigger class="lg:hidden">
       <Menu />
     </SheetTrigger>
-    <SheetContent
-      :hidden="isLgAndLarger"
-      side="left"
-      class="inset-2 w-auto h-auto lg:hidden"
-    >
+    <SheetContent side="left" class="inset-2 w-auto h-auto lg:hidden">
       <SheetClose
         class="w-fit p-2 ring-offset-background data-[state=open]:bg-secondary rounded-xs opacity-70 transition-opacity hover:opacity-100 disabled:pointer-events-none"
       >
@@ -84,7 +79,7 @@ watch(isLgAndLarger, (isLgAndLarger) => {
       </NavigationMenu>
     </SheetContent>
   </Sheet>
-  <NavigationMenu :hidden="isSmallerThanLg" class="hidden lg:flex">
+  <NavigationMenu class="hidden lg:flex">
     <NavigationMenuList>
       <NavigationMenuItem
         v-for="collection in localeCollections"
