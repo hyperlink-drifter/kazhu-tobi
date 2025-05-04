@@ -10,33 +10,31 @@ if (!route.params.slug?.length || !route.params.slug[0]) {
 
 const slug = route.params.slug[0];
 
-const { data } = await useAsyncData(
-  `collection-products-${slug}`,
-  () =>
-    GqlGetCollectionProducts({
-      slug,
-    }),
-  {
-    transform: (data) => {
-      data.search.items = data.search.items.map((i) => ({
-        name: i.productName,
-        featuredAsset: i.productAsset,
-        ...i,
-      }));
-
-      return data;
-    },
-  }
+const { data } = await useAsyncData(`collection-products-${slug}`, () =>
+  GqlGetCollectionProducts({
+    slug,
+  })
 );
 
-const products = computed(() => data?.value?.search);
+const collectionProducts = computed(() => data?.value?.search);
+
+const products = computed(() =>
+  collectionProducts.value?.items.map(
+    (i) =>
+      ({
+        slug: i.slug,
+        name: i.productName,
+        featuredAsset: i.productAsset,
+      } as VendureProduct)
+  )
+);
 </script>
 
 <template>
   <LayoutCenter>
     <ul class="grid grid-cols-12 gap-x-4 gap-y-8">
       <li
-        v-for="product in products?.items"
+        v-for="product in products"
         :key="JSON.stringify(product)"
         class="col-span-12 sm:col-span-6 lg:col-span-4 xl:col-span-3"
       >
