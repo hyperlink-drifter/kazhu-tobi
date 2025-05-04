@@ -21,7 +21,7 @@ const selectedLocale = computed(() =>
     :defaultValue="selectedLocale?.name"
     :class="cn(props.class)"
   >
-    <SelectTrigger class="w-[180px]">
+    <SelectTrigger>
       <SelectValue :placeholder="selectedLocale?.name" />
     </SelectTrigger>
     <SelectContent>

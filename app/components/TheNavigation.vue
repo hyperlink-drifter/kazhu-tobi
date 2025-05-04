@@ -68,7 +68,7 @@ watch(isLgAndLarger, (isLgAndLarger) => {
                 <NavigationMenuLink
                   :href
                   :active="isActive"
-                  :class="`p-0! ${navigationMenuTriggerStyle()}`"
+                  :class="`${navigationMenuTriggerStyle()}`"
                   @click="
                     () => {
                       isDrawerOpen = false;
@@ -114,7 +114,7 @@ watch(isLgAndLarger, (isLgAndLarger) => {
           <NavigationMenuLink
             :active="isActive"
             :href
-            :class="navigationMenuTriggerStyle()"
+            :class="`${navigationMenuTriggerStyle()} px-4 py-4 `"
             @click="navigate"
           >
             {{ collection?.name }}
