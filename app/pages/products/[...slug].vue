@@ -20,11 +20,13 @@ const product = computed(() => data?.value?.product);
 </script>
 
 <template>
-  <div class="grid grid-cols-12 gap-2 sm:gap-4">
-    <ProductImageGallery
-      v-if="product?.assets"
-      :images="product?.assets"
-      :title="product.name"
-    />
-  </div>
+  <LayoutCenter>
+    <div class="grid grid-cols-12 gap-2 sm:gap-4">
+      <ProductImageGallery
+        v-if="product?.assets"
+        :images="product?.assets"
+        :title="product.name"
+      />
+    </div>
+  </LayoutCenter>
 </template>
