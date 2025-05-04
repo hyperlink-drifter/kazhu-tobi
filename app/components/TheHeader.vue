@@ -14,12 +14,12 @@ const props = defineProps<Props>();
     <header :class="cn('flex justify-between', props.class)">
       <slot>
         <TheNavigation />
-        <div class="flex items-center gap-2 py-4">
-          <TheLocaleSelector />
+        <div class="flex items-center gap-2 lg:py-4">
+          <TheLocaleSelector class="hidden lg:flex" />
           <Button>
             <Search />
           </Button>
-          <Button>
+          <Button class="hidden lg:flex">
             <User />
           </Button>
           <Button>

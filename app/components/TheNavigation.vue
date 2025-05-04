@@ -2,7 +2,7 @@
 import type { HTMLAttributes } from 'vue';
 import { navigationMenuTriggerStyle } from '@/components/ui/navigation-menu';
 import { breakpointsTailwind, useBreakpoints } from '@vueuse/core';
-import { CircleX, AlignJustify } from 'lucide-vue-next';
+import { CircleX, AlignJustify, User } from 'lucide-vue-next';
 
 interface Props {
   class?: HTMLAttributes['class'];
@@ -37,8 +37,8 @@ watch(isLgAndLarger, (isLgAndLarger) => {
 
 <template>
   <Drawer v-model:open="isDrawerOpen">
-    <DrawerTrigger class="lg:hidden" as-child>
-      <Button variant="ghost" size="icon">
+    <DrawerTrigger class="lg:hidden self-center" as-child>
+      <Button size="icon">
         <AlignJustify class="size-6" />
       </Button>
     </DrawerTrigger>
@@ -84,6 +84,12 @@ watch(isLgAndLarger, (isLgAndLarger) => {
         </NavigationMenu>
       </div>
       <DrawerFooter class="items-center">
+        <div class="flex items-center gap-2 py-4">
+          <TheLocaleSelector />
+          <Button>
+            <User />
+          </Button>
+        </div>
         <DrawerClose
           class="grid grid-cols-[1fr_auto_1fr] w-full md:w-md"
           as-child

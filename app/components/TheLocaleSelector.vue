@@ -19,9 +19,8 @@ const selectedLocale = computed(() =>
     v-model="selectedLocale"
     @update:modelValue="(l: any) => setLocale(l.code)"
     :defaultValue="selectedLocale?.name"
-    :class="cn(props.class)"
   >
-    <SelectTrigger>
+    <SelectTrigger :class="cn(props.class)">
       <SelectValue :placeholder="selectedLocale?.name" />
     </SelectTrigger>
     <SelectContent>
