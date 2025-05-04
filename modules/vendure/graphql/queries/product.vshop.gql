@@ -6,10 +6,14 @@ query getProducts($skip: Int, $take: Int) {
       name
       slug
       featuredAsset {
+        id
         source
+        preview
       }
       assets {
+        id
         source
+        preview
       }
     }
   }
@@ -21,10 +25,14 @@ query getProduct($id: ID, $slug: String) {
     name
     slug
     featuredAsset {
+      id
       source
+      preview
     }
     assets {
+      id
       source
+      preview
     }
   }
 }

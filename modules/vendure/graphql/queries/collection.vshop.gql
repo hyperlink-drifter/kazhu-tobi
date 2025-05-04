@@ -12,3 +12,37 @@ query getTopLevelCollections {
     }
   }
 }
+
+query GetCollection($id: ID, $slug: String) {
+  collection(id: $id, slug: $slug) {
+    id
+    name
+    slug
+    translations {
+      languageCode
+      name
+      slug
+    }
+  }
+}
+
+query GetCollectionProducts($slug: String!, $skip: Int, $take: Int) {
+  search(
+    input: {
+      collectionSlug: $slug
+      groupByProduct: true
+      skip: $skip
+      take: $take
+    }
+  ) {
+    totalItems
+    items {
+      productName
+      slug
+      productAsset {
+        id
+        preview
+      }
+    }
+  }
+}

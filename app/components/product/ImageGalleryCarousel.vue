@@ -40,7 +40,7 @@ watchOnce(emblaMainApi, (emblaMainApi) => {
         <CarouselItem v-for="(image, index) in images" :key="image.id">
           <AspectRatio :ratio="4 / 5">
             <NuxtImg
-              :src="image.source"
+              :src="image.preview"
               :preload="index === 0 ? true : false"
               :loading="index === 0 ? 'eager' : 'lazy'"
               :fetch-priority="index === 0 ? 'high' : 'low'"

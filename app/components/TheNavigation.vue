@@ -47,7 +47,7 @@ watch(isLgAndLarger, (isLgAndLarger) => {
         <CircleX class="size-8" />
         <span class="sr-only">Close</span>
       </SheetClose>
-      <NavigationMenu orientation="vertical" class="flex-0">
+      <NavigationMenu class="flex-0">
         <NavigationMenuList class="flex flex-col items-start">
           <NavigationMenuItem
             v-for="collection in localeCollections"
