@@ -69,12 +69,10 @@ watch(isLgAndLarger, (isLgAndLarger) => {
                   :href
                   :active="isActive"
                   :class="`${navigationMenuTriggerStyle()}`"
-                  @click="
-                    () => {
-                      isDrawerOpen = false;
-                      navigate();
-                    }
-                  "
+                  @click="(e: MouseEvent) => {
+                    navigate(e)
+                    isDrawerOpen = false
+                  }"
                 >
                   {{ collection?.name }}
                 </NavigationMenuLink>
