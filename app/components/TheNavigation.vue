@@ -98,10 +98,11 @@ watch(isLgAndLarger, (isLgAndLarger) => {
     </DrawerContent>
   </Drawer>
   <NavigationMenu class="hidden lg:flex">
-    <NavigationMenuList>
+    <NavigationMenuList class="h-full">
       <NavigationMenuItem
         v-for="collection in localeCollections"
         :key="`menu-${collection?.slug}`"
+        class="h-full"
       >
         <NuxtLink
           custom
@@ -118,7 +119,7 @@ watch(isLgAndLarger, (isLgAndLarger) => {
           <NavigationMenuLink
             :active="isActive"
             :href
-            :class="`${navigationMenuTriggerStyle()} px-4 py-4 `"
+            :class="`${navigationMenuTriggerStyle()} px-4 py-0 h-full`"
             @click="navigate"
           >
             {{ collection?.name }}

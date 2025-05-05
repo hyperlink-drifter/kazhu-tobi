@@ -10,26 +10,28 @@ const props = defineProps<Props>();
 </script>
 
 <template>
-  <LayoutCenter class="sticky top-0 bg-white z-20 py-2 lg:py-0">
-    <header :class="cn('flex justify-between', props.class)">
+  <header :class="cn('sticky h-header top-0 left-0 w-full z-20', props.class)">
+    <LayoutCenter class="bg-white">
       <slot>
-        <TheNavigation />
-        <div class="flex items-center gap-2 lg:py-4">
-          <TheLocaleSelector class="hidden lg:flex" />
-          <Button>
-            <Search />
-          </Button>
-          <Button class="hidden lg:flex">
-            <User />
-          </Button>
-          <Button>
-            <Heart />
-          </Button>
-          <Button>
-            <ShoppingCart />
-          </Button>
+        <div class="flex justify-between">
+          <TheNavigation />
+          <div class="flex items-center gap-2">
+            <TheLocaleSelector class="hidden lg:flex" />
+            <Button>
+              <Search />
+            </Button>
+            <Button class="hidden lg:flex">
+              <User />
+            </Button>
+            <Button>
+              <Heart />
+            </Button>
+            <Button>
+              <ShoppingCart />
+            </Button>
+          </div>
         </div>
       </slot>
-    </header>
-  </LayoutCenter>
+    </LayoutCenter>
+  </header>
 </template>
