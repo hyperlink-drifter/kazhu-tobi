@@ -6,6 +6,7 @@ export { default as NavigationMenuIndicator } from './NavigationMenuIndicator.vu
 export { default as NavigationMenuItem } from './NavigationMenuItem.vue';
 export { default as NavigationMenuLink } from './NavigationMenuLink.vue';
 export { default as NavigationMenuList } from './NavigationMenuList.vue';
+export { default as NavigationMenuListXYZ } from './NavigationMenuListXYZ.vue';
 export { default as NavigationMenuTrigger } from './NavigationMenuTrigger.vue';
 export { default as NavigationMenuViewport } from './NavigationMenuViewport.vue';
 

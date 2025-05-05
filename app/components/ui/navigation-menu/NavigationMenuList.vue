@@ -1,11 +1,8 @@
 <script setup lang="ts">
 import { cn } from '@/utils/utils';
-import {
-  NavigationMenuList,
-  type NavigationMenuListProps,
-  useForwardProps,
-} from 'reka-ui';
+import { type NavigationMenuListProps, useForwardProps } from 'reka-ui';
 import { computed, type HTMLAttributes } from 'vue';
+import NavigationMenuListXYZ from './NavigationMenuListXYZ.vue';
 
 const props = defineProps<
   NavigationMenuListProps & { class?: HTMLAttributes['class'] }
@@ -21,7 +18,7 @@ const forwardedProps = useForwardProps(delegatedProps);
 </script>
 
 <template>
-  <NavigationMenuList
+  <NavigationMenuListXYZ
     data-slot="navigation-menu-list"
     v-bind="forwardedProps"
     :class="
@@ -29,5 +26,5 @@ const forwardedProps = useForwardProps(delegatedProps);
     "
   >
     <slot />
-  </NavigationMenuList>
+  </NavigationMenuListXYZ>
 </template>
