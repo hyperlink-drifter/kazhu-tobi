@@ -25,7 +25,7 @@ const translation = computed(() =>
       </CardHeader>
       <CardContent class="px-0">
         <CardDescription>
-          <div class="prose prose-sm" v-html="translation?.description"></div>
+          <!-- <div class="prose prose-sm" v-html="translation?.description"></div> -->
         </CardDescription>
       </CardContent>
     </Card>
