@@ -40,7 +40,7 @@ if (!products.value.items) {
       </LayoutCover>
     </LayoutCenter>
   </div>
-  <LayoutCenter class="py-8 lg:py-12">
+  <LayoutCenter class="py-8 lg:py-12 bg-background">
     <h2 class="mb-4 text-2xl font-semibold">
       {{ $t('heading-bestsellers') }}
     </h2>
