@@ -42,7 +42,8 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
 
-  --spacing-header: 64px;
+  --spacing-header: --spacing(16);
+  --spacing-header-higher: --spacing(20);
 }
 
 :root {

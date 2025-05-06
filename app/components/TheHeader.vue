@@ -10,7 +10,14 @@ const props = defineProps<Props>();
 </script>
 
 <template>
-  <header :class="cn('sticky h-header top-0 left-0 w-full z-20', props.class)">
+  <header
+    :class="
+      cn(
+        'sticky h-header lg:h-header-higher top-0 left-0 w-full z-20',
+        props.class
+      )
+    "
+  >
     <LayoutCenter class="bg-white">
       <slot>
         <div class="flex justify-between">
