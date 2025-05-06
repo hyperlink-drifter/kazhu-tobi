@@ -44,10 +44,7 @@ watch(isLgAndLarger, (isLgAndLarger) => {
     </DrawerTrigger>
     <DrawerContent>
       <div class="p-4">
-        <NavigationMenu
-          orientation="vertical"
-          class="max-w-full justify-start md:justify-center"
-        >
+        <NavigationMenu orientation="vertical" class="max-w-full justify-start">
           <NavigationMenuList class="block">
             <NavigationMenuItem
               v-for="collection in localeCollections"
@@ -68,7 +65,7 @@ watch(isLgAndLarger, (isLgAndLarger) => {
                 <NavigationMenuLink
                   :href
                   :active="isActive"
-                  :class="`${navigationMenuTriggerStyle()}`"
+                  :class="`${navigationMenuTriggerStyle()} pl-0`"
                   @click="(e: MouseEvent) => {
                     navigate(e)
                     isDrawerOpen = false
@@ -82,11 +79,11 @@ watch(isLgAndLarger, (isLgAndLarger) => {
         </NavigationMenu>
       </div>
       <DrawerFooter class="items-center">
-        <div class="flex items-center gap-2 py-4">
-          <TheLocaleSelector />
-          <Button>
+        <div class="self-start flex flex-col gap-2">
+          <Button class="w-fit">
             <User />
           </Button>
+          <TheLocaleSelector />
         </div>
         <DrawerClose
           class="grid grid-cols-[1fr_auto_1fr] w-full md:w-md"
