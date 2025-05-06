@@ -82,6 +82,24 @@
   --sidebar-ring: oklch(0.705 0.015 286.067);
 }
 
+:root {
+  --the-center-grid-padding: --spacing(2);
+  --the-center-grid-cols: minmax(var(--the-center-grid-padding), 1fr)
+    min(
+      calc(
+        100% - var(--the-center-grid-padding) - var(--the-center-grid-padding)
+      ),
+      1280px
+    )
+    minmax(var(--the-center-grid-padding), 1fr);
+}
+
+@media screen and (width >= 40rem) {
+  :root {
+    --the-center-grid-padding: --spacing(4);
+  }
+}
+
 .dark {
   --background: oklch(0.141 0.005 285.823);
   --foreground: oklch(0.985 0 0);
