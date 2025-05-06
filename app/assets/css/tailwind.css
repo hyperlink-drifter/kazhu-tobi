@@ -43,7 +43,7 @@
   --color-sidebar-ring: var(--sidebar-ring);
 
   --spacing-header: --spacing(16);
-  --spacing-header-higher: --spacing(20);
+  --spacing-header-lg: --spacing(20);
 }
 
 :root {
@@ -233,5 +233,5 @@ html {
 
 body,
 #__nuxt {
-  min-height: 100%;
+  height: 100%;
 }

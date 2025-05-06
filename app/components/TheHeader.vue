@@ -13,12 +13,12 @@ const props = defineProps<Props>();
   <header
     :class="
       cn(
-        'sticky h-header lg:h-header-higher top-0 left-0 w-full z-20',
+        'sticky min-h-header lg:min-h-header-lg top-0 left-0 w-full z-20',
         props.class
       )
     "
   >
-    <LayoutCenter class="bg-white">
+    <LayoutCenter class="bg-white h-full">
       <slot>
         <div class="flex justify-between">
           <TheNavigation />

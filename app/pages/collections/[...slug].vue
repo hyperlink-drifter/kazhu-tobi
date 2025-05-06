@@ -36,7 +36,7 @@ const products = computed(() => productList.value?.products.items);
 </script>
 
 <template>
-  <LayoutCenter>
+  <LayoutCenter class="py-8 md:py-12">
     <ul class="grid grid-cols-12 gap-x-2 sm:gap-x-4 md:gap-y-4 gap-y-8">
       <li
         v-for="product in products"

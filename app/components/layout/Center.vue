@@ -10,9 +10,7 @@ const props = defineProps<Props>();
 
 <template>
   <div
-    :class="
-      cn('grid grid-cols-(--the-center-grid-cols) w-full h-full', props.class)
-    "
+    :class="cn('grid grid-cols-(--the-center-grid-cols) w-full', props.class)"
   >
     <div class="grid col-start-2 col-end-3">
       <slot />
