@@ -21,7 +21,7 @@ const product = computed(() => data?.value?.product);
 
 <template>
   <LayoutCenter>
-    <div class="grid grid-cols-12 gap-2 sm:gap-x-4 gap-y-8 lg:gap-y-2">
+    <div class="grid grid-cols-12 gap-2 sm:gap-x-4 gap-y-4 lg:gap-y-2">
       <ProductImageGallery
         v-if="product?.assets"
         :images="product?.assets"

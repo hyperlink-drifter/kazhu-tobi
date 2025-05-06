@@ -37,7 +37,7 @@ const products = computed(() => productList.value?.products.items);
 
 <template>
   <LayoutCenter>
-    <ul class="grid grid-cols-12 gap-x-4 gap-y-8">
+    <ul class="grid grid-cols-12 gap-x-2 sm:gap-x-4 md:gap-y-4 gap-y-8">
       <li
         v-for="product in products"
         :key="JSON.stringify(product)"

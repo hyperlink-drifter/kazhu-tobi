@@ -12,7 +12,7 @@ const props = defineProps<Props>();
   <div
     :class="
       cn(
-        'flex flex-col min-h-svh p-4 [&>*:first-child:not(.center)]:mt-0 [&>*:last-child:not(.center)]:mb-0 [&_.center]:my-auto ',
+        'flex flex-col min-h-svh py-4 [&>*:first-child:not(.center)]:mt-0 [&>*:last-child:not(.center)]:mb-0 [&_.center]:my-auto ',
         props.class
       )
     "

@@ -44,7 +44,7 @@ const images = [
       @init-api="(val) => (emblaMainApi = val)"
       :plugins="[
         Autoplay({
-          delay: 6000,
+          delay: 5000,
         }),
         Fade(),
       ]"

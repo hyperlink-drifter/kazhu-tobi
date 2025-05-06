@@ -14,7 +14,7 @@ if (!products.value.items) {
 
 <template>
   <LayoutCenter>
-    <ul class="grid grid-cols-12 gap-x-2 md:gap-x-4 gap-y-8">
+    <ul class="grid grid-cols-12 gap-x-2 sm:gap-x-4 gap-y-4">
       <li
         v-for="product in products?.items"
         :key="JSON.stringify(product)"
