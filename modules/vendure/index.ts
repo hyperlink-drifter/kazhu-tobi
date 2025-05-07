@@ -25,7 +25,7 @@ export default defineNuxtModule<ModuleOptions>({
   // Shorthand sugar to register Nuxt hooks
   hooks: {},
   // The function holding your module logic, it can be asynchronous
-  setup(options, nuxt) {
+  setup(_, nuxt) {
     const { resolve } = createResolver(import.meta.url);
     addImportsDir(resolve('types'));
 
