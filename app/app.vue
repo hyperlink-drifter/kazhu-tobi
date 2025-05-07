@@ -1,11 +1,11 @@
 <template>
-  <div class="h-full flex flex-col">
+  <NuxtLayout>
     <NuxtRouteAnnouncer />
     <NuxtLoadingIndicator />
     <TheHeader />
-    <TheMain class="flex-grow">
+    <TheMain>
       <NuxtPage />
     </TheMain>
     <TheFooter />
-  </div>
+  </NuxtLayout>
 </template>

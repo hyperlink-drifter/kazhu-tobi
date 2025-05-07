@@ -9,7 +9,7 @@ const props = defineProps<Props>();
 </script>
 
 <template>
-  <main :class="cn(props.class)">
+  <main :class="cn('flex-grow', props.class)">
     <slot />
   </main>
 </template>
