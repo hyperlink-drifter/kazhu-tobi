@@ -38,6 +38,7 @@ export default defineNuxtConfig({
     'shadcn-nuxt',
     '@nuxthub/core',
     'nuxt-graphql-client',
+    '@nuxt/scripts',
   ],
 
   hub: {},
