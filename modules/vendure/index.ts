@@ -25,7 +25,7 @@ export default defineNuxtModule<ModuleOptions>({
   // Shorthand sugar to register Nuxt hooks
   hooks: {},
   // The function holding your module logic, it can be asynchronous
-  setup(_, nuxt) {
+  setup(options, nuxt) {
     const { resolve } = createResolver(import.meta.url);
     addImportsDir(resolve('types'));
 
@@ -34,7 +34,7 @@ export default defineNuxtModule<ModuleOptions>({
         documentPaths: ['../modules/vendure/graphql'],
         clients: {
           vshop: {
-            host: 'https://vendure.hyperlink-drifter.com/shop-api',
+            host: options.endpoints?.shop as string,
           },
         },
       },

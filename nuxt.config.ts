@@ -11,11 +11,10 @@ export default defineNuxtConfig({
 
   app: {
     head: {
-      htmlAttrs: { lang: 'en' },
       link: [
         {
           rel: 'preconnect',
-          href: 'https://vendure.hyperlink-drifter.com/shop-api',
+          href: process.env.NUXT_PUBLIC_VENDURE_SHOP_API,
         },
       ],
     },
@@ -36,6 +35,12 @@ export default defineNuxtConfig({
   ],
 
   hub: {},
+
+  vendure: {
+    endpoints: {
+      shop: process.env.NUXT_PUBLIC_VENDURE_SHOP_API,
+    },
+  },
 
   i18n: {
     defaultLocale: 'uk',
