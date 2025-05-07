@@ -9,6 +9,18 @@ export default defineNuxtConfig({
     compatibilityVersion: 4,
   },
 
+  app: {
+    head: {
+      htmlAttrs: { lang: 'en' },
+      link: [
+        {
+          rel: 'preconnect',
+          href: 'https://vendure.hyperlink-drifter.com/shop-api',
+        },
+      ],
+    },
+  },
+
   css: ['~/assets/css/tailwind.css'],
 
   vite: {
@@ -29,10 +41,11 @@ export default defineNuxtConfig({
     defaultLocale: 'uk',
     strategy: 'prefix_and_default',
     detectBrowserLanguage: false,
+    baseUrl: process.env.I18N_BASE_URL,
     locales: [
-      { code: 'en', name: 'English', file: 'en.json' },
-      { code: 'uk', name: 'українська', file: 'uk.json' },
-      { code: 'de', name: 'Deutsch', file: 'de.json' },
+      { code: 'en', language: 'en-US', name: 'English', file: 'en.json' },
+      { code: 'uk', language: 'uk-UK', name: 'українська', file: 'uk.json' },
+      { code: 'de', language: 'de-De', name: 'Deutsch', file: 'de.json' },
     ],
   },
 
