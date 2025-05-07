@@ -236,3 +236,12 @@ body,
 #__nuxt {
   height: 100%;
 }
+
+iframe[src*='instagram'] {
+  width: 100% !important;
+  min-width: 100% !important;
+}
+
+iframe[src*='instagram'] .Caption {
+  display: none !important;
+}

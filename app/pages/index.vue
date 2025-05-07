@@ -12,6 +12,25 @@ if (!products.value) {
 if (!products.value.items) {
   throw createError({ statusCode: 404, statusMessage: 'Product Not Found' });
 }
+
+const instaPosts = [
+  {
+    postId: 'C5x_B9Athe4',
+    instaHandle: 'shoptime_24',
+  },
+  {
+    postId: 'C5ddgqANmDz',
+    instaHandle: 'shoptime_24',
+  },
+  {
+    postId: 'DIlON2qtID3',
+    instaHandle: 'shoptime_24',
+  },
+  {
+    postId: 'DGv3tLtNNs_',
+    instaHandle: 'shoptime_24',
+  },
+];
 </script>
 
 <template>
@@ -47,9 +66,26 @@ if (!products.value.items) {
       {{ $t('heading-bestsellers') }}
     </h2>
     <LayoutReel class="l-reel-w sm:l-reel-w-sm md:l-reel-w-md">
-      <div v-for="product in products?.items" :key="JSON.stringify(product)">
-        <ProductTileCard class="h-inherit" :product="product" />
-      </div>
+      <ProductTileCard
+        v-for="product in products?.items"
+        :key="JSON.stringify(product)"
+        class="h-inherit"
+        :product="product"
+      />
     </LayoutReel>
+  </LayoutCenter>
+  <LayoutCenter class="py-8 lg:py-12 bg-background">
+    <h2 class="mb-4 text-2xl font-semibold">
+      {{ $t('visit-our-instagram') }}
+    </h2>
+    <div class="grid grid-cols-12 gap-x-2 sm:gap-x-4 gap-y-4">
+      <EmbededInstagram
+        v-for="post in instaPosts"
+        :key="JSON.stringify(post.postId)"
+        :postId="post.postId"
+        :instaHandle="post.instaHandle"
+        class="col-span-12 md:col-span-4 xl:col-span-3"
+      />
+    </div>
   </LayoutCenter>
 </template>
