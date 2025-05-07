@@ -9,9 +9,11 @@ const props = defineProps<Props>();
 
 const { locale, locales, setLocale } = useI18n();
 
-const selectedLocale = computed(() =>
-  locales.value.find((l) => l.code === locale.value)
-);
+const selectedLocale = ref(locales.value.find((l) => l.code === locale.value));
+
+watch(locale, (newLocale) => {
+  selectedLocale.value = locales.value.find((l) => l.code === newLocale);
+});
 </script>
 
 <template>
