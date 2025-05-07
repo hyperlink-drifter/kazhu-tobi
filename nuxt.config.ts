@@ -20,6 +20,12 @@ export default defineNuxtConfig({
     },
   },
 
+  runtimeConfig: {
+    public: {
+      vendureShopApi: process.env.NUXT_PUBLIC_VENDURE_SHOP_API,
+    },
+  },
+
   css: ['~/assets/css/tailwind.css'],
 
   vite: {
@@ -35,12 +41,6 @@ export default defineNuxtConfig({
   ],
 
   hub: {},
-
-  vendure: {
-    endpoints: {
-      shop: process.env.NUXT_PUBLIC_VENDURE_SHOP_API,
-    },
-  },
 
   i18n: {
     defaultLocale: 'uk',

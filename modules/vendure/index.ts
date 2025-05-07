@@ -34,7 +34,7 @@ export default defineNuxtModule<ModuleOptions>({
         documentPaths: ['../modules/vendure/graphql'],
         clients: {
           vshop: {
-            host: options.endpoints?.shop as string,
+            host: 'https://vendure.hyperlink-drifter.com/shop-api',
           },
         },
       },
