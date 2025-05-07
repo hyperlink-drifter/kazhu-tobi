@@ -37,7 +37,7 @@
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.16",
-    "wrangler": "^4.13.0"
+    "wrangler": "^4.14.3"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
