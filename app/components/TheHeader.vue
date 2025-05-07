@@ -12,10 +12,7 @@ const props = defineProps<Props>();
 <template>
   <header
     :class="
-      cn(
-        'sticky min-h-header lg:min-h-header-lg top-0 left-0 w-full z-20',
-        props.class
-      )
+      cn('sticky h-header lg:h-header-lg top-0 left-0 w-full z-20', props.class)
     "
   >
     <LayoutCenter class="bg-white h-full">
