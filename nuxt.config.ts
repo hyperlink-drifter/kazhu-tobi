@@ -41,7 +41,7 @@ export default defineNuxtConfig({
     defaultLocale: 'uk',
     strategy: 'prefix_and_default',
     detectBrowserLanguage: false,
-    baseUrl: process.env.I18N_BASE_URL,
+    baseUrl: process.env.NUXT_PUBLIC_I18N_BASE_URL,
     locales: [
       { code: 'en', language: 'en-US', name: 'English', file: 'en.json' },
       { code: 'uk', language: 'uk-UK', name: 'українська', file: 'uk.json' },
