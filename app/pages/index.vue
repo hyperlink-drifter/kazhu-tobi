@@ -15,15 +15,15 @@ if (!products.value.items) {
 </script>
 
 <template>
-  <div class="grid h-[calc(90svh-var(--spacing-header))]">
+  <div class="grid h-[calc(80svh-var(--spacing-header))]">
     <div
-      class="flex col-start-1 row-start-1 h-[calc(90svh-var(--spacing-header))]"
+      class="flex col-start-1 row-start-1 h-[calc(80svh-var(--spacing-header))]"
     >
       <HeroImageCarousel />
     </div>
     <LayoutCenter class="col-start-1 col-end-2 row-start-1 h-full z-10">
       <LayoutCover
-        class="min-h-[calc(90svh-var(--spacing-header))] prose prose-2xl dark:prose-invert"
+        class="min-h-[calc(80svh-var(--spacing-header))] prose prose-2xl dark:prose-invert"
       >
         <template #center>
           <h1 class="hyphens-auto max-w-md">
