@@ -72,7 +72,8 @@ const props = defineProps<Props>();
           </div>
           <section class="self-end mt-auto">
             <NuxtLink
-              to="https://www.hyperlink-drifter.com"
+              to="https://hyperlink-drifter.com"
+              target="_blank"
               class="flex gap-x-3"
             >
               <small class="text-sm">
