@@ -42,10 +42,10 @@ const instaPosts = [
     </div>
     <LayoutCenter class="col-start-1 col-end-2 row-start-1 h-full z-10">
       <LayoutCover
-        class="min-h-[calc(80svh-var(--spacing-header))] prose prose-2xl dark:prose-invert"
+        class="min-h-[calc(80svh-var(--spacing-header))] prose prose-xl md:prose-2xl dark:prose-invert"
       >
         <template #center>
-          <h1 class="hyphens-auto max-w-md">
+          <h1 class="hyphens-auto max-w-md mb-2">
             {{ $t('welcome') }}
           </h1>
           <NuxtLink
