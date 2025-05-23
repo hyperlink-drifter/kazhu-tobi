@@ -17,6 +17,7 @@ const translation = computed(() =>
         {{ translation?.name }}
       </h1>
       <div v-html="translation?.description" />
+      <ProductOptionGroups :product="product" />
     </div>
   </div>
 </template>
