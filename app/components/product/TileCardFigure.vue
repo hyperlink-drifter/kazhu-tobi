@@ -1,5 +1,11 @@
 <script lang="ts" setup>
-defineProps<{ product: VendureProduct }>();
+import type { GetProductQuery, GetProductsQuery } from '#graphql-operations';
+
+defineProps<{
+  product:
+    | GetProductQuery['product']
+    | GetProductsQuery['products']['items'][0];
+}>();
 </script>
 
 <template>

@@ -69,13 +69,12 @@ query GetProduct($id: ID, $slug: String) {
     variants {
       id
       sku
-      name
       options {
         id
-        name
+        code
         group {
           id
-          name
+          code
         }
       }
     }

@@ -27,18 +27,16 @@ export default defineNuxtModule<ModuleOptions>({
   // The function holding your module logic, it can be asynchronous
   setup(_, nuxt) {
     const { resolve } = createResolver(import.meta.url);
+
+    addImportsDir(resolve('composables'));
     addImportsDir(resolve('types'));
 
-    nuxt.options['graphql-client'] = defu(
+    nuxt.options['graphqlMiddleware'] = defu(
       {
-        documentPaths: ['../modules/vendure/graphql'],
-        clients: {
-          vshop: {
-            host: 'https://vendure.hyperlink-drifter.com/shop-api',
-          },
-        },
+        graphqlEndpoint: nuxt.options.runtimeConfig.vendureShopApi,
+        downloadSchema: process.env.NODE_ENV === 'development',
       },
-      nuxt.options['graphql-client']
+      nuxt.options['graphqlMiddleware']
     );
   },
 });

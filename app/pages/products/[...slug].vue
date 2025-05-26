@@ -11,12 +11,12 @@ if (!route.params.slug?.length || !route.params.slug[0]) {
 const slug = route.params.slug[0];
 
 const { data } = await useAsyncData(`product-${slug}`, () =>
-  GqlGetProduct({
+  useGraphqlQuery('GetProduct', {
     slug,
   })
 );
 
-const product = computed(() => data?.value?.product);
+const product = computed(() => data?.value?.data.product);
 </script>
 
 <template>

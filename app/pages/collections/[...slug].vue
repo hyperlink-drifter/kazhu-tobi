@@ -10,29 +10,25 @@ if (!route.params.slug?.length || !route.params.slug[0]) {
 
 const slug = route.params.slug[0];
 
-const { data: searchResponse } = await useAsyncData(
-  `collection-products-${slug}`,
-  () =>
-    GqlGetCollectionProducts({
-      slug,
-    })
+const { data } = await useAsyncData(`collection-products-${slug}`, () =>
+  useGraphqlQuery('GetCollectionProducts', { slug })
 );
 
-const collectionProducts = computed(() => searchResponse?.value?.search);
+const xyz = computed(() => data.value?.data.search);
 
 const { data: productList } = await useAsyncData(
   `collection-products-full-${slug}`,
   () =>
-    GqlGetProducts({
+    useGraphqlQuery('GetProducts', {
       filter: {
         id: {
-          in: collectionProducts.value?.items.map((i) => i.productId),
+          in: xyz.value?.items.map((i) => `${i.productId}`),
         },
       },
     })
 );
 
-const products = computed(() => productList.value?.products.items);
+const products = computed(() => productList.value?.data.products.items);
 </script>
 
 <template>

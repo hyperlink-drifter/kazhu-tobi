@@ -1,4 +1,4 @@
-query getTopLevelCollections {
+query GetTopLevelCollections {
   collections(options: { topLevelOnly: true }) {
     items {
       languageCode

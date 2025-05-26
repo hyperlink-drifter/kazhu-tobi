@@ -21,9 +21,7 @@ export default defineNuxtConfig({
   },
 
   runtimeConfig: {
-    public: {
-      vendureShopApi: process.env.NUXT_PUBLIC_VENDURE_SHOP_API,
-    },
+    vendureShopApi: process.env.NUXT_VENDURE_SHOP_API,
   },
 
   css: ['~/assets/css/tailwind.css'],
@@ -37,9 +35,11 @@ export default defineNuxtConfig({
     '@nuxtjs/i18n',
     'shadcn-nuxt',
     '@nuxthub/core',
-    'nuxt-graphql-client',
     '@nuxt/scripts',
+    'nuxt-graphql-middleware',
   ],
+
+  graphqlMiddleware: {},
 
   hub: {},
 

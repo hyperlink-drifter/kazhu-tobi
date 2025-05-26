@@ -1,11 +1,11 @@
 <script setup lang="ts">
+import type { GetProductQuery } from '#graphql-operations';
+
 const props = defineProps<{
-  product?: VendureProduct;
+  product?: GetProductQuery['product'];
 }>();
 
 const optionGroups = computed(() => props?.product?.optionGroups);
-
-console.info(optionGroups.value);
 
 const router = useRouter();
 const route = useRoute();

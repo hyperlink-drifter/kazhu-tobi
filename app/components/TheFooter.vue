@@ -5,10 +5,10 @@ import { Instagram } from 'lucide-vue-next';
 const { locale } = useI18n();
 
 const { data } = await useLazyAsyncData(`collections`, () =>
-  GqlGetTopLevelCollections()
+  useGraphqlQuery('GetTopLevelCollections', {})
 );
 
-const collections = computed(() => data.value?.collections.items);
+const collections = computed(() => data.value?.data.collections.items);
 
 const localeCollections = computed(() => {
   return collections.value?.map((c) =>

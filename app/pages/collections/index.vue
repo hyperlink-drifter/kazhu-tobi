@@ -6,17 +6,17 @@ const { data } = await useAsyncData('products', () =>
 const products = computed(() => data.value?.data.products);
 
 if (!products.value) {
-  throw createError({ statusCode: 404, statusMessage: 'Product Not Found' });
+  throw createError({ statusCode: 404, statusMessage: 'Collection Not Found' });
 }
 
 if (!products.value.items) {
-  throw createError({ statusCode: 404, statusMessage: 'Product Not Found' });
+  throw createError({ statusCode: 404, statusMessage: 'Collection Not Found' });
 }
 </script>
 
 <template>
-  <LayoutCenter class="py-8 md:py-12 bg-background">
-    <ul class="grid grid-cols-12 gap-x-2 sm:gap-x-4 gap-y-4">
+  <LayoutCenter>
+    <ul class="grid grid-cols-12 gap-x-2 sm:gap-x-4 md:gap-y-4 gap-y-4">
       <li
         v-for="product in products?.items"
         :key="JSON.stringify(product)"

@@ -1,17 +1,25 @@
 import type {
   GetProductQuery,
   GetProductsQuery,
-  GetCollectionQuery,
+  GetActiveOrderQuery,
   GetTopLevelCollectionsQuery,
+  GetCollectionQuery,
   GetCollectionProductsQuery,
-} from '#gql';
+} from '#graphql-operations';
+
+type First<T extends any[]> = T[0];
 
 // Product
 export type VendureProduct = GetProductQuery['product'];
 export type VendureProducts = GetProductsQuery['products'];
+export type VendureProductProp =
+  | VendureProduct
+  | First<VendureProducts['items']>;
+
+// Order
+export type VendureActiveOrder = GetActiveOrderQuery['activeOrder'];
 
 // Collection
-type First<T extends any[]> = T[0];
 export type VendureCollections = GetTopLevelCollectionsQuery['collections'];
 export type VendureCollection = GetCollectionQuery['collection'];
 export type VendureCollectionProducts = GetCollectionProductsQuery['search'];

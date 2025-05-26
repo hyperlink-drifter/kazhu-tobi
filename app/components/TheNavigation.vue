@@ -12,11 +12,11 @@ defineProps<Props>();
 
 const { locale } = useI18n();
 
-const { data } = await useAsyncData(`collections`, () =>
-  GqlGetTopLevelCollections()
+const { data } = await useLazyAsyncData(`collections`, () =>
+  useGraphqlQuery('GetTopLevelCollections', {})
 );
 
-const collections = computed(() => data.value?.collections.items);
+const collections = computed(() => data.value?.data.collections.items);
 
 const localeCollections = computed(() => {
   return collections.value?.map((c) =>

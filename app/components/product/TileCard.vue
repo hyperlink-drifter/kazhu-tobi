@@ -1,5 +1,11 @@
 <script lang="ts" setup>
-const props = defineProps<{ product: VendureProduct }>();
+import type { GetProductQuery, GetProductsQuery } from '#graphql-operations';
+
+const props = defineProps<{
+  product:
+    | GetProductQuery['product']
+    | GetProductsQuery['products']['items'][0];
+}>();
 
 const { locale } = useI18n();
 

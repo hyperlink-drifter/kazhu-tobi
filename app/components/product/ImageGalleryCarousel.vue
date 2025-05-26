@@ -1,14 +1,12 @@
 <script setup lang="ts">
 import type { CarouselApi } from '@/components/ui/carousel';
-import { watchOnce, useMediaQuery } from '@vueuse/core';
+import { watchOnce } from '@vueuse/core';
 
 defineProps<{ images: any[]; title?: string }>();
 
 const emblaMainApi = ref<CarouselApi>();
 const emblaThumbnailApi = ref<CarouselApi>();
 const selectedIndex = ref(0);
-
-const isMdScreen = useMediaQuery('(min-width: 768px)');
 
 function onSelect() {
   if (!emblaMainApi.value || !emblaThumbnailApi.value) return;
