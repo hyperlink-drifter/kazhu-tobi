@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { GetProductQuery, GetProductsQuery } from '#graphql-operations';
+import type { GetProductQuery, GetProductsQuery } from '@@/graphql/generated';
 
 const props = defineProps<{
   product:

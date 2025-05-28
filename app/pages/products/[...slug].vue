@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { GetProductQuery } from '@@/graphql/generated';
+
 const route = useRoute();
 
 if (!route.params.slug?.length || !route.params.slug[0]) {
@@ -10,13 +12,16 @@ if (!route.params.slug?.length || !route.params.slug[0]) {
 
 const slug = route.params.slug[0];
 
-const { data } = await useAsyncData(`product-${slug}`, () =>
-  useGraphqlQuery('GetProduct', {
-    slug,
-  })
-);
+const { data } = await useFetch<GetProductQuery>('/api/v/product', {
+  method: 'post',
+  body: {
+    variables: {
+      slug,
+    },
+  },
+});
 
-const product = computed(() => data?.value?.data.product);
+const product = computed(() => data?.value?.product);
 </script>
 
 <template>
