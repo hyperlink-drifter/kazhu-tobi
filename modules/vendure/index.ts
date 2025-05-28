@@ -1,4 +1,9 @@
-import { defineNuxtModule, createResolver, addImportsDir } from '@nuxt/kit';
+import {
+  defineNuxtModule,
+  createResolver,
+  addImportsDir,
+  addPlugin,
+} from '@nuxt/kit';
 import { defu } from 'defu';
 
 export interface ModuleOptions {
@@ -28,8 +33,10 @@ export default defineNuxtModule<ModuleOptions>({
   setup(_, nuxt) {
     const { resolve } = createResolver(import.meta.url);
 
-    addImportsDir(resolve('composables'));
+    addImportsDir(resolve('runtime/composables'));
     addImportsDir(resolve('types'));
+
+    addPlugin(resolve('runtime/plugin'));
 
     nuxt.options['graphqlMiddleware'] = defu(
       {
