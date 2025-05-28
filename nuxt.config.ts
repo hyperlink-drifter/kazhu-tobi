@@ -9,17 +9,6 @@ export default defineNuxtConfig({
     compatibilityVersion: 4,
   },
 
-  app: {
-    head: {
-      link: [
-        {
-          rel: 'preconnect',
-          href: process.env.NUXT_PUBLIC_VENDURE_SHOP_API,
-        },
-      ],
-    },
-  },
-
   runtimeConfig: {
     vendureShopApi: process.env.NUXT_VENDURE_SHOP_API,
   },
