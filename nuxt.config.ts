@@ -9,6 +9,13 @@ export default defineNuxtConfig({
     compatibilityVersion: 4,
   },
 
+  experimental: {
+    componentIslands: {
+      remoteIsland: true,
+      selectiveClient: true,
+    },
+  },
+
   runtimeConfig: {
     vendureShopApi: process.env.NUXT_VENDURE_SHOP_API,
   },
