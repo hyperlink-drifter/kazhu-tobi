@@ -1,10 +1,10 @@
 <script setup lang="ts">
 const props = defineProps<{ slug: string }>();
 
-const { $v } = useNuxtApp();
+const { $vendure } = useNuxtApp();
 
 const { data } = await useAsyncData(`product-${props.slug}`, () =>
-  $v.GetProduct({ slug: props.slug })
+  $vendure.GetProduct({ slug: props.slug })
 );
 
 const product = computed(() => data?.value?.data.product);

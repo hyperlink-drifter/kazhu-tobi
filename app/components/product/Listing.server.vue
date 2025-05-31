@@ -1,7 +1,7 @@
 <script setup lang="ts">
-const { $v } = useNuxtApp();
+const { $vendure } = useNuxtApp();
 
-const { data } = await useAsyncData(`products`, () => $v.GetProducts());
+const { data } = await useAsyncData(`products`, () => $vendure.GetProducts());
 
 const products = computed(() => data?.value?.data.products);
 

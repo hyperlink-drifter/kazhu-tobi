@@ -3,11 +3,11 @@ import { getSdk } from '@@/graphql/generated';
 
 export default defineNuxtPlugin((nuxtApp) => {
   const client = new GraphQLClient(nuxtApp.$config.vendureShopApi);
-  const v = getSdk(client);
+  const vendure = getSdk(client);
 
   return {
     provide: {
-      v,
+      vendure,
     },
   };
 });
