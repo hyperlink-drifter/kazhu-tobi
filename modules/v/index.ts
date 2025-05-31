@@ -1,10 +1,4 @@
-import {
-  defineNuxtModule,
-  createResolver,
-  addImportsDir,
-  addPlugin,
-} from '@nuxt/kit';
-import { defu } from 'defu';
+import { defineNuxtModule, createResolver, addPlugin } from '@nuxt/kit';
 import { generate } from '@graphql-codegen/cli';
 import type { CodegenConfig } from '@graphql-codegen/cli';
 
@@ -54,5 +48,7 @@ export default defineNuxtModule<ModuleOptions>({
     };
 
     await generate({ ...config, cwd: process.cwd() }, true);
+
+    addPlugin(resolve('runtime/plugin'));
   },
 });

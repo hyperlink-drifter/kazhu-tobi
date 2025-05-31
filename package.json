@@ -45,8 +45,8 @@
   "devDependencies": {
     "@graphql-codegen/cli": "^5.0.6",
     "@graphql-codegen/typescript": "^4.1.6",
-    "@graphql-codegen/typescript-graphql-request": "^6.3.0",
     "@graphql-codegen/typescript-operations": "^4.6.1",
+    "@graphql-codegen/typescript-graphql-request": "^6.3.0",
     "@tailwindcss/typography": "^0.5.16",
     "typescript": "^5.8.3",
     "wrangler": "^4.14.3"
