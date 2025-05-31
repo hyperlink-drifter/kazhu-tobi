@@ -1,9 +1,12 @@
 <script setup lang="ts">
-const { data } = await useAsyncData('products', () =>
-  useGraphqlQuery('GetProducts', {})
-);
+import type { GetProductsQuery } from '@@/graphql/generated';
 
-const products = computed(() => data.value?.data.products);
+const { data } = await useFetch<GetProductsQuery>('/api/v/products', {
+  method: 'post',
+  body: {},
+});
+
+const products = computed(() => data.value?.products);
 
 if (!products.value) {
   throw createError({ statusCode: 404, statusMessage: 'Collection Not Found' });

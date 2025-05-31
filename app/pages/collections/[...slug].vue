@@ -1,4 +1,9 @@
 <script setup lang="ts">
+import type {
+  GetProductsQuery,
+  GetCollectionProductsQuery,
+} from '@@/graphql/generated';
+
 const route = useRoute();
 
 if (!route.params.slug?.length || !route.params.slug[0]) {
@@ -10,25 +15,37 @@ if (!route.params.slug?.length || !route.params.slug[0]) {
 
 const slug = route.params.slug[0];
 
-const { data } = await useAsyncData(`collection-products-${slug}`, () =>
-  useGraphqlQuery('GetCollectionProducts', { slug })
+const { data } = await useFetch<GetCollectionProductsQuery>(
+  '/api/v/collection-products',
+  {
+    method: 'post',
+    body: {
+      variables: {
+        slug,
+      },
+    },
+  }
 );
 
-const xyz = computed(() => data.value?.data.search);
+const xyz = computed(() => data.value?.search);
 
-const { data: productList } = await useAsyncData(
-  `collection-products-full-${slug}`,
-  () =>
-    useGraphqlQuery('GetProducts', {
-      filter: {
-        id: {
-          in: xyz.value?.items.map((i) => `${i.productId}`),
+const { data: productList } = await useFetch<GetProductsQuery>(
+  '/api/v/products',
+  {
+    method: 'post',
+    body: {
+      variables: {
+        filter: {
+          id: {
+            in: xyz.value?.items.map((i) => `${i.productId}`),
+          },
         },
       },
-    })
+    },
+  }
 );
 
-const products = computed(() => productList.value?.data.products.items);
+const products = computed(() => productList.value?.products.items);
 </script>
 
 <template>

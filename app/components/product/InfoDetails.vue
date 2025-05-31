@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { GetProductQuery } from '#graphql-operations';
+import type { GetProductQuery } from '@@/graphql/generated';
 import { ShoppingCart } from 'lucide-vue-next';
 
 const props = defineProps<{ product: GetProductQuery['product'] }>();
