@@ -2,7 +2,7 @@
 import type {
   GetProductsQuery,
   GetCollectionProductsQuery,
-} from '@@/graphql/generated';
+} from '@@/graphql/graphql';
 
 const route = useRoute();
 

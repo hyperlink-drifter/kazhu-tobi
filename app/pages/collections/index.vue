@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { GetProductsQuery } from '@@/graphql/generated';
+import type { GetProductsQuery } from '@@/graphql/graphql';
 
 const { data } = await useFetch<GetProductsQuery>('/api/v/products', {
   method: 'post',

@@ -31,17 +31,21 @@ export default defineNuxtModule<ModuleOptions>({
 
     const config: CodegenConfig = {
       schema: 'https://vendure.hyperlink-drifter.com/shop-api',
-      documents: ['./**/*.{gql,graphql}'],
+      emitLegacyCommonJSImports: false,
+      documents: ['./**/*.ts'],
       generates: {
-        'graphql/generated.ts': {
-          plugins: [
-            'typescript',
-            'typescript-operations',
-            'typescript-graphql-request',
-          ],
+        './graphql/': {
+          preset: 'client',
           config: {
-            rawRequest: true,
+            documentMode: 'string',
             useTypeImports: true,
+            rawRequest: true,
+          },
+        },
+        './schema.graphql': {
+          plugins: ['schema-ast'],
+          config: {
+            includeDirectives: true,
           },
         },
       },

@@ -1,17 +1,7 @@
 <script setup lang="ts">
-const { $vendure } = useNuxtApp();
+import { GetProducts } from '#shared/graphql/queries';
 
-const { data } = await useAsyncData(`products`, () => $vendure.GetProducts());
-
-const products = computed(() => data?.value?.data.products);
-
-if (!products.value) {
-  throw createError({ statusCode: 404, statusMessage: 'Product Not Found' });
-}
-
-if (!products.value.items) {
-  throw createError({ statusCode: 404, statusMessage: 'Product Not Found' });
-}
+const { products } = await useQuery(GetProducts, {});
 </script>
 
 <template>

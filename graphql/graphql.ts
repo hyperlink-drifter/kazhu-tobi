@@ -1,6 +1,5 @@
-import type { GraphQLClient, RequestOptions } from 'graphql-request';
-import { GraphQLError, print } from 'graphql'
-import gql from 'graphql-tag';
+/* eslint-disable */
+import type { DocumentTypeDecoration } from '@graphql-typed-document-node/core';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
@@ -8,7 +7,6 @@ export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: 
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
 export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> = { [_ in K]?: never };
 export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
-type GraphQLClientRequestHeaders = RequestOptions['requestHeaders'];
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: { input: string; output: string; }
@@ -16,9 +14,13 @@ export type Scalars = {
   Boolean: { input: boolean; output: boolean; }
   Int: { input: number; output: number; }
   Float: { input: number; output: number; }
+  /** A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar. */
   DateTime: { input: any; output: any; }
+  /** The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf). */
   JSON: { input: any; output: any; }
+  /** The `Money` scalar type represents monetary values and supports signed double-precision fractional values as specified by [IEEE 754](https://en.wikipedia.org/wiki/IEEE_floating_point). */
   Money: { input: any; output: any; }
+  /** The `Upload` scalar type represents a file upload. */
   Upload: { input: any; output: any; }
 };
 
@@ -3527,72 +3529,6 @@ export type Zone = Node & {
   updatedAt: Scalars['DateTime']['output'];
 };
 
-export type ActiveOrderFragment = { __typename: 'Order', id: string, code: string, couponCodes: Array<string>, state: string, currencyCode: CurrencyCode, totalQuantity: number, subTotalWithTax: any, shippingWithTax: any, totalWithTax: any, discounts: Array<{ __typename?: 'Discount', description: string, amountWithTax: any }>, lines: Array<{ __typename?: 'OrderLine', id: string, unitPriceWithTax: any, quantity: number, linePriceWithTax: any, productVariant: { __typename?: 'ProductVariant', id: string, name: string, sku: string }, featuredAsset?: { __typename?: 'Asset', id: string, preview: string } | null }>, shippingLines: Array<{ __typename?: 'ShippingLine', priceWithTax: any, shippingMethod: { __typename?: 'ShippingMethod', description: string } }> };
-
-export type AddItemToOrderMutationVariables = Exact<{
-  productVariantId: Scalars['ID']['input'];
-  quantity: Scalars['Int']['input'];
-}>;
-
-
-export type AddItemToOrderMutation = { __typename?: 'Mutation', addItemToOrder: { __typename?: 'InsufficientStockError', errorCode: ErrorCode, message: string, quantityAvailable: number, order: { __typename: 'Order', id: string, code: string, couponCodes: Array<string>, state: string, currencyCode: CurrencyCode, totalQuantity: number, subTotalWithTax: any, shippingWithTax: any, totalWithTax: any, discounts: Array<{ __typename?: 'Discount', description: string, amountWithTax: any }>, lines: Array<{ __typename?: 'OrderLine', id: string, unitPriceWithTax: any, quantity: number, linePriceWithTax: any, productVariant: { __typename?: 'ProductVariant', id: string, name: string, sku: string }, featuredAsset?: { __typename?: 'Asset', id: string, preview: string } | null }>, shippingLines: Array<{ __typename?: 'ShippingLine', priceWithTax: any, shippingMethod: { __typename?: 'ShippingMethod', description: string } }> } } | { __typename?: 'NegativeQuantityError', errorCode: ErrorCode, message: string } | { __typename: 'Order', id: string, code: string, couponCodes: Array<string>, state: string, currencyCode: CurrencyCode, totalQuantity: number, subTotalWithTax: any, shippingWithTax: any, totalWithTax: any, discounts: Array<{ __typename?: 'Discount', description: string, amountWithTax: any }>, lines: Array<{ __typename?: 'OrderLine', id: string, unitPriceWithTax: any, quantity: number, linePriceWithTax: any, productVariant: { __typename?: 'ProductVariant', id: string, name: string, sku: string }, featuredAsset?: { __typename?: 'Asset', id: string, preview: string } | null }>, shippingLines: Array<{ __typename?: 'ShippingLine', priceWithTax: any, shippingMethod: { __typename?: 'ShippingMethod', description: string } }> } | { __typename?: 'OrderInterceptorError', errorCode: ErrorCode, message: string } | { __typename?: 'OrderLimitError', errorCode: ErrorCode, message: string } | { __typename?: 'OrderModificationError', errorCode: ErrorCode, message: string } };
-
-export type RemoveItemFromOrderMutationVariables = Exact<{
-  orderLineId: Scalars['ID']['input'];
-}>;
-
-
-export type RemoveItemFromOrderMutation = { __typename?: 'Mutation', removeOrderLine: { __typename: 'Order', id: string, code: string, couponCodes: Array<string>, state: string, currencyCode: CurrencyCode, totalQuantity: number, subTotalWithTax: any, shippingWithTax: any, totalWithTax: any, discounts: Array<{ __typename?: 'Discount', description: string, amountWithTax: any }>, lines: Array<{ __typename?: 'OrderLine', id: string, unitPriceWithTax: any, quantity: number, linePriceWithTax: any, productVariant: { __typename?: 'ProductVariant', id: string, name: string, sku: string }, featuredAsset?: { __typename?: 'Asset', id: string, preview: string } | null }>, shippingLines: Array<{ __typename?: 'ShippingLine', priceWithTax: any, shippingMethod: { __typename?: 'ShippingMethod', description: string } }> } | { __typename?: 'OrderInterceptorError', errorCode: ErrorCode, message: string } | { __typename?: 'OrderModificationError', errorCode: ErrorCode, message: string } };
-
-export type AdjustOrderLineMutationVariables = Exact<{
-  orderLineId: Scalars['ID']['input'];
-  quantity: Scalars['Int']['input'];
-}>;
-
-
-export type AdjustOrderLineMutation = { __typename?: 'Mutation', adjustOrderLine: { __typename?: 'InsufficientStockError', errorCode: ErrorCode, message: string } | { __typename?: 'NegativeQuantityError', errorCode: ErrorCode, message: string } | { __typename: 'Order', id: string, code: string, couponCodes: Array<string>, state: string, currencyCode: CurrencyCode, totalQuantity: number, subTotalWithTax: any, shippingWithTax: any, totalWithTax: any, discounts: Array<{ __typename?: 'Discount', description: string, amountWithTax: any }>, lines: Array<{ __typename?: 'OrderLine', id: string, unitPriceWithTax: any, quantity: number, linePriceWithTax: any, productVariant: { __typename?: 'ProductVariant', id: string, name: string, sku: string }, featuredAsset?: { __typename?: 'Asset', id: string, preview: string } | null }>, shippingLines: Array<{ __typename?: 'ShippingLine', priceWithTax: any, shippingMethod: { __typename?: 'ShippingMethod', description: string } }> } | { __typename?: 'OrderInterceptorError', errorCode: ErrorCode, message: string } | { __typename?: 'OrderLimitError', errorCode: ErrorCode, message: string } | { __typename?: 'OrderModificationError', errorCode: ErrorCode, message: string } };
-
-export type ApplyCouponCodeMutationVariables = Exact<{
-  couponCode: Scalars['String']['input'];
-}>;
-
-
-export type ApplyCouponCodeMutation = { __typename?: 'Mutation', applyCouponCode: { __typename?: 'CouponCodeExpiredError', errorCode: ErrorCode, message: string } | { __typename?: 'CouponCodeInvalidError', errorCode: ErrorCode, message: string } | { __typename?: 'CouponCodeLimitError', errorCode: ErrorCode, message: string } | { __typename: 'Order', id: string, code: string, couponCodes: Array<string>, state: string, currencyCode: CurrencyCode, totalQuantity: number, subTotalWithTax: any, shippingWithTax: any, totalWithTax: any, discounts: Array<{ __typename?: 'Discount', description: string, amountWithTax: any }>, lines: Array<{ __typename?: 'OrderLine', id: string, unitPriceWithTax: any, quantity: number, linePriceWithTax: any, productVariant: { __typename?: 'ProductVariant', id: string, name: string, sku: string }, featuredAsset?: { __typename?: 'Asset', id: string, preview: string } | null }>, shippingLines: Array<{ __typename?: 'ShippingLine', priceWithTax: any, shippingMethod: { __typename?: 'ShippingMethod', description: string } }> } };
-
-export type RemoveCouponCodeMutationVariables = Exact<{
-  couponCode: Scalars['String']['input'];
-}>;
-
-
-export type RemoveCouponCodeMutation = { __typename?: 'Mutation', removeCouponCode?: { __typename: 'Order', id: string, code: string, couponCodes: Array<string>, state: string, currencyCode: CurrencyCode, totalQuantity: number, subTotalWithTax: any, shippingWithTax: any, totalWithTax: any, discounts: Array<{ __typename?: 'Discount', description: string, amountWithTax: any }>, lines: Array<{ __typename?: 'OrderLine', id: string, unitPriceWithTax: any, quantity: number, linePriceWithTax: any, productVariant: { __typename?: 'ProductVariant', id: string, name: string, sku: string }, featuredAsset?: { __typename?: 'Asset', id: string, preview: string } | null }>, shippingLines: Array<{ __typename?: 'ShippingLine', priceWithTax: any, shippingMethod: { __typename?: 'ShippingMethod', description: string } }> } | null };
-
-export type GetTopLevelCollectionsQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type GetTopLevelCollectionsQuery = { __typename?: 'Query', collections: { __typename?: 'CollectionList', items: Array<{ __typename?: 'Collection', languageCode?: LanguageCode | null, name: string, slug: string, translations: Array<{ __typename?: 'CollectionTranslation', languageCode: LanguageCode, name: string, slug: string }> }> } };
-
-export type GetCollectionQueryVariables = Exact<{
-  id?: InputMaybe<Scalars['ID']['input']>;
-  slug?: InputMaybe<Scalars['String']['input']>;
-}>;
-
-
-export type GetCollectionQuery = { __typename?: 'Query', collection?: { __typename?: 'Collection', id: string, name: string, slug: string, translations: Array<{ __typename?: 'CollectionTranslation', languageCode: LanguageCode, name: string, slug: string }> } | null };
-
-export type GetCollectionProductsQueryVariables = Exact<{
-  slug: Scalars['String']['input'];
-  skip?: InputMaybe<Scalars['Int']['input']>;
-  take?: InputMaybe<Scalars['Int']['input']>;
-}>;
-
-
-export type GetCollectionProductsQuery = { __typename?: 'Query', search: { __typename?: 'SearchResponse', totalItems: number, items: Array<{ __typename?: 'SearchResult', productId: string, productName: string, slug: string, productAsset?: { __typename?: 'SearchResultAsset', id: string, preview: string } | null }> } };
-
-export type GetActiveOrderQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type GetActiveOrderQuery = { __typename?: 'Query', activeOrder?: { __typename: 'Order', id: string, code: string, couponCodes: Array<string>, state: string, currencyCode: CurrencyCode, totalQuantity: number, subTotalWithTax: any, shippingWithTax: any, totalWithTax: any, discounts: Array<{ __typename?: 'Discount', description: string, amountWithTax: any }>, lines: Array<{ __typename?: 'OrderLine', id: string, unitPriceWithTax: any, quantity: number, linePriceWithTax: any, productVariant: { __typename?: 'ProductVariant', id: string, name: string, sku: string }, featuredAsset?: { __typename?: 'Asset', id: string, preview: string } | null }>, shippingLines: Array<{ __typename?: 'ShippingLine', priceWithTax: any, shippingMethod: { __typename?: 'ShippingMethod', description: string } }> } | null };
-
 export type GetProductsQueryVariables = Exact<{
   skip?: InputMaybe<Scalars['Int']['input']>;
   take?: InputMaybe<Scalars['Int']['input']>;
@@ -3610,158 +3546,26 @@ export type GetProductQueryVariables = Exact<{
 
 export type GetProductQuery = { __typename?: 'Query', product?: { __typename?: 'Product', id: string, name: string, slug: string, description: string, featuredAsset?: { __typename?: 'Asset', id: string, source: string, preview: string } | null, assets: Array<{ __typename?: 'Asset', id: string, source: string, preview: string }>, translations: Array<{ __typename?: 'ProductTranslation', id: string, slug: string, name: string, description: string, languageCode: LanguageCode }>, optionGroups: Array<{ __typename?: 'ProductOptionGroup', id: string, code: string, translations: Array<{ __typename?: 'ProductOptionGroupTranslation', languageCode: LanguageCode, name: string }>, options: Array<{ __typename?: 'ProductOption', id: string, code: string, translations: Array<{ __typename?: 'ProductOptionTranslation', languageCode: LanguageCode, name: string }> }> }>, variants: Array<{ __typename?: 'ProductVariant', id: string, sku: string, options: Array<{ __typename?: 'ProductOption', id: string, code: string, group: { __typename?: 'ProductOptionGroup', id: string, code: string } }> }> } | null };
 
-export const ActiveOrderFragmentDoc = gql`
-    fragment ActiveOrder on Order {
-  __typename
-  id
-  code
-  couponCodes
-  state
-  currencyCode
-  totalQuantity
-  subTotalWithTax
-  shippingWithTax
-  totalWithTax
-  discounts {
-    description
-    amountWithTax
+export class TypedDocumentString<TResult, TVariables>
+  extends String
+  implements DocumentTypeDecoration<TResult, TVariables>
+{
+  __apiType?: DocumentTypeDecoration<TResult, TVariables>['__apiType'];
+  private value: string;
+  public __meta__?: Record<string, any> | undefined;
+
+  constructor(value: string, __meta__?: Record<string, any> | undefined) {
+    super(value);
+    this.value = value;
+    this.__meta__ = __meta__;
   }
-  lines {
-    id
-    unitPriceWithTax
-    quantity
-    linePriceWithTax
-    productVariant {
-      id
-      name
-      sku
-    }
-    featuredAsset {
-      id
-      preview
-    }
-  }
-  shippingLines {
-    shippingMethod {
-      description
-    }
-    priceWithTax
+
+  toString(): string & DocumentTypeDecoration<TResult, TVariables> {
+    return this.value;
   }
 }
-    `;
-export const AddItemToOrderDocument = gql`
-    mutation AddItemToOrder($productVariantId: ID!, $quantity: Int!) {
-  addItemToOrder(productVariantId: $productVariantId, quantity: $quantity) {
-    ...ActiveOrder
-    ... on ErrorResult {
-      errorCode
-      message
-    }
-    ... on InsufficientStockError {
-      quantityAvailable
-      order {
-        ...ActiveOrder
-      }
-    }
-  }
-}
-    ${ActiveOrderFragmentDoc}`;
-export const RemoveItemFromOrderDocument = gql`
-    mutation RemoveItemFromOrder($orderLineId: ID!) {
-  removeOrderLine(orderLineId: $orderLineId) {
-    ...ActiveOrder
-    ... on ErrorResult {
-      errorCode
-      message
-    }
-  }
-}
-    ${ActiveOrderFragmentDoc}`;
-export const AdjustOrderLineDocument = gql`
-    mutation AdjustOrderLine($orderLineId: ID!, $quantity: Int!) {
-  adjustOrderLine(orderLineId: $orderLineId, quantity: $quantity) {
-    ...ActiveOrder
-    ... on ErrorResult {
-      errorCode
-      message
-    }
-  }
-}
-    ${ActiveOrderFragmentDoc}`;
-export const ApplyCouponCodeDocument = gql`
-    mutation ApplyCouponCode($couponCode: String!) {
-  applyCouponCode(couponCode: $couponCode) {
-    ...ActiveOrder
-    ... on ErrorResult {
-      errorCode
-      message
-    }
-  }
-}
-    ${ActiveOrderFragmentDoc}`;
-export const RemoveCouponCodeDocument = gql`
-    mutation RemoveCouponCode($couponCode: String!) {
-  removeCouponCode(couponCode: $couponCode) {
-    ...ActiveOrder
-  }
-}
-    ${ActiveOrderFragmentDoc}`;
-export const GetTopLevelCollectionsDocument = gql`
-    query GetTopLevelCollections {
-  collections(options: {topLevelOnly: true}) {
-    items {
-      languageCode
-      name
-      slug
-      translations {
-        languageCode
-        name
-        slug
-      }
-    }
-  }
-}
-    `;
-export const GetCollectionDocument = gql`
-    query GetCollection($id: ID, $slug: String) {
-  collection(id: $id, slug: $slug) {
-    id
-    name
-    slug
-    translations {
-      languageCode
-      name
-      slug
-    }
-  }
-}
-    `;
-export const GetCollectionProductsDocument = gql`
-    query GetCollectionProducts($slug: String!, $skip: Int, $take: Int) {
-  search(
-    input: {collectionSlug: $slug, groupByProduct: true, skip: $skip, take: $take}
-  ) {
-    totalItems
-    items {
-      productId
-      productName
-      slug
-      productAsset {
-        id
-        preview
-      }
-    }
-  }
-}
-    `;
-export const GetActiveOrderDocument = gql`
-    query GetActiveOrder {
-  activeOrder {
-    ...ActiveOrder
-  }
-}
-    ${ActiveOrderFragmentDoc}`;
-export const GetProductsDocument = gql`
+
+export const GetProductsDocument = new TypedDocumentString(`
     query GetProducts($skip: Int, $take: Int, $filter: ProductFilterParameter) {
   products(options: {skip: $skip, take: $take, filter: $filter}) {
     totalItems
@@ -3790,8 +3594,8 @@ export const GetProductsDocument = gql`
     }
   }
 }
-    `;
-export const GetProductDocument = gql`
+    `) as unknown as TypedDocumentString<GetProductsQuery, GetProductsQueryVariables>;
+export const GetProductDocument = new TypedDocumentString(`
     query GetProduct($id: ID, $slug: String) {
   product(id: $id, slug: $slug) {
     id
@@ -3845,58 +3649,4 @@ export const GetProductDocument = gql`
     }
   }
 }
-    `;
-
-export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string, operationType?: string, variables?: any) => Promise<T>;
-
-
-const defaultWrapper: SdkFunctionWrapper = (action, _operationName, _operationType, _variables) => action();
-const AddItemToOrderDocumentString = print(AddItemToOrderDocument);
-const RemoveItemFromOrderDocumentString = print(RemoveItemFromOrderDocument);
-const AdjustOrderLineDocumentString = print(AdjustOrderLineDocument);
-const ApplyCouponCodeDocumentString = print(ApplyCouponCodeDocument);
-const RemoveCouponCodeDocumentString = print(RemoveCouponCodeDocument);
-const GetTopLevelCollectionsDocumentString = print(GetTopLevelCollectionsDocument);
-const GetCollectionDocumentString = print(GetCollectionDocument);
-const GetCollectionProductsDocumentString = print(GetCollectionProductsDocument);
-const GetActiveOrderDocumentString = print(GetActiveOrderDocument);
-const GetProductsDocumentString = print(GetProductsDocument);
-const GetProductDocumentString = print(GetProductDocument);
-export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
-  return {
-    AddItemToOrder(variables: AddItemToOrderMutationVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<{ data: AddItemToOrderMutation; errors?: GraphQLError[]; extensions?: any; headers: Headers; status: number; }> {
-        return withWrapper((wrappedRequestHeaders) => client.rawRequest<AddItemToOrderMutation>(AddItemToOrderDocumentString, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'AddItemToOrder', 'mutation', variables);
-    },
-    RemoveItemFromOrder(variables: RemoveItemFromOrderMutationVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<{ data: RemoveItemFromOrderMutation; errors?: GraphQLError[]; extensions?: any; headers: Headers; status: number; }> {
-        return withWrapper((wrappedRequestHeaders) => client.rawRequest<RemoveItemFromOrderMutation>(RemoveItemFromOrderDocumentString, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'RemoveItemFromOrder', 'mutation', variables);
-    },
-    AdjustOrderLine(variables: AdjustOrderLineMutationVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<{ data: AdjustOrderLineMutation; errors?: GraphQLError[]; extensions?: any; headers: Headers; status: number; }> {
-        return withWrapper((wrappedRequestHeaders) => client.rawRequest<AdjustOrderLineMutation>(AdjustOrderLineDocumentString, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'AdjustOrderLine', 'mutation', variables);
-    },
-    ApplyCouponCode(variables: ApplyCouponCodeMutationVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<{ data: ApplyCouponCodeMutation; errors?: GraphQLError[]; extensions?: any; headers: Headers; status: number; }> {
-        return withWrapper((wrappedRequestHeaders) => client.rawRequest<ApplyCouponCodeMutation>(ApplyCouponCodeDocumentString, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'ApplyCouponCode', 'mutation', variables);
-    },
-    RemoveCouponCode(variables: RemoveCouponCodeMutationVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<{ data: RemoveCouponCodeMutation; errors?: GraphQLError[]; extensions?: any; headers: Headers; status: number; }> {
-        return withWrapper((wrappedRequestHeaders) => client.rawRequest<RemoveCouponCodeMutation>(RemoveCouponCodeDocumentString, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'RemoveCouponCode', 'mutation', variables);
-    },
-    GetTopLevelCollections(variables?: GetTopLevelCollectionsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<{ data: GetTopLevelCollectionsQuery; errors?: GraphQLError[]; extensions?: any; headers: Headers; status: number; }> {
-        return withWrapper((wrappedRequestHeaders) => client.rawRequest<GetTopLevelCollectionsQuery>(GetTopLevelCollectionsDocumentString, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'GetTopLevelCollections', 'query', variables);
-    },
-    GetCollection(variables?: GetCollectionQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<{ data: GetCollectionQuery; errors?: GraphQLError[]; extensions?: any; headers: Headers; status: number; }> {
-        return withWrapper((wrappedRequestHeaders) => client.rawRequest<GetCollectionQuery>(GetCollectionDocumentString, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'GetCollection', 'query', variables);
-    },
-    GetCollectionProducts(variables: GetCollectionProductsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<{ data: GetCollectionProductsQuery; errors?: GraphQLError[]; extensions?: any; headers: Headers; status: number; }> {
-        return withWrapper((wrappedRequestHeaders) => client.rawRequest<GetCollectionProductsQuery>(GetCollectionProductsDocumentString, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'GetCollectionProducts', 'query', variables);
-    },
-    GetActiveOrder(variables?: GetActiveOrderQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<{ data: GetActiveOrderQuery; errors?: GraphQLError[]; extensions?: any; headers: Headers; status: number; }> {
-        return withWrapper((wrappedRequestHeaders) => client.rawRequest<GetActiveOrderQuery>(GetActiveOrderDocumentString, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'GetActiveOrder', 'query', variables);
-    },
-    GetProducts(variables?: GetProductsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<{ data: GetProductsQuery; errors?: GraphQLError[]; extensions?: any; headers: Headers; status: number; }> {
-        return withWrapper((wrappedRequestHeaders) => client.rawRequest<GetProductsQuery>(GetProductsDocumentString, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'GetProducts', 'query', variables);
-    },
-    GetProduct(variables?: GetProductQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<{ data: GetProductQuery; errors?: GraphQLError[]; extensions?: any; headers: Headers; status: number; }> {
-        return withWrapper((wrappedRequestHeaders) => client.rawRequest<GetProductQuery>(GetProductDocumentString, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'GetProduct', 'query', variables);
-    }
-  };
-}
-export type Sdk = ReturnType<typeof getSdk>;
+    `) as unknown as TypedDocumentString<GetProductQuery, GetProductQueryVariables>;
