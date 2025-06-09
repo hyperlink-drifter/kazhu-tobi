@@ -1,11 +1,10 @@
 <script setup lang="ts">
+import type { GetProductsQuery } from '@@/graphql/generated';
 import { ArrowRight } from 'lucide-vue-next';
 
-const { data } = await useAsyncData('products', () =>
-  useGraphqlQuery('GetProducts', {})
-);
+const { data } = await useFetch<GetProductsQuery>('/api/v/products');
 
-const products = computed(() => data.value?.data.products);
+const products = computed(() => data?.value?.products);
 
 if (!products.value) {
   throw createError({ statusCode: 404, statusMessage: 'Product Not Found' });

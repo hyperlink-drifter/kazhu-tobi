@@ -1,5 +1,8 @@
 <script lang="ts" setup>
-import type { GetProductQuery } from '@@/graphql/generated';
+import type {
+  AddItemToOrderMutation,
+  GetProductQuery,
+} from '@@/graphql/generated';
 import { ShoppingCart } from 'lucide-vue-next';
 
 const props = defineProps<{ product: GetProductQuery['product'] }>();
@@ -30,10 +33,13 @@ const computedVariant = computed(() => {
   );
 });
 
-const fetchSomething = async () => {
-  const { data } = await useGraphqlMutation('AddItemToOrder', {
-    productVariantId: computedVariant!.value!.id,
-    quantity: 1,
+const addToCart = async () => {
+  await $fetch<AddItemToOrderMutation>('/api/v/order/add-item', {
+    method: 'POST',
+    body: {
+      productVariantId: computedVariant!.value!.id,
+      quantity: 1,
+    },
   });
 };
 </script>
@@ -48,9 +54,9 @@ const fetchSomething = async () => {
       </h1>
       <div v-html="translation?.description" />
       <ProductOptionGroups :product="product" />
-      <Button @click="fetchSomething">
-        {{ $t('add-to-cart') }} <ShoppingCart
-      /></Button>
+      <Button @click="addToCart">
+        {{ $t('add-to-cart') }} <ShoppingCart />
+      </Button>
       <div>
         {{ computedVariant }}
       </div>

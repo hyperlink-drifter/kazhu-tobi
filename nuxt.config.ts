@@ -32,10 +32,7 @@ export default defineNuxtConfig({
     'shadcn-nuxt',
     '@nuxthub/core',
     '@nuxt/scripts',
-    'nuxt-graphql-middleware',
   ],
-
-  graphqlMiddleware: {},
 
   hub: {},
 
