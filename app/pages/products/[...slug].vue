@@ -13,7 +13,11 @@ const slug = route.params.slug[0];
 
 <template>
   <LayoutCenter class="py-8 md:py-12 bg-background">
-    <ProviderProduct :slug="slug" v-slot="{ product }">
+    <ProviderProduct
+      :slug="slug"
+      v-slot="{ product }"
+      class="grid grid-cols-12 gap-2 sm:gap-x-4 gap-y-4 lg:gap-y-2"
+    >
       <ProductImageGallery
         v-if="product?.assets"
         :images="product?.assets"

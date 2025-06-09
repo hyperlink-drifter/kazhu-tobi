@@ -1,7 +1,8 @@
 <script setup lang="ts">
+import type { HTMLAttributes } from 'vue';
 import type { GetProductQuery } from '@@/graphql/generated';
 
-const props = defineProps<{ slug: string }>();
+const props = defineProps<{ slug: string; class?: HTMLAttributes['class'] }>();
 
 const { data } = await useFetch<GetProductQuery>('/api/v/product', {
   query: {
@@ -15,7 +16,7 @@ if (!data.value) {
 </script>
 
 <template>
-  <div class="grid grid-cols-12 gap-2 sm:gap-x-4 gap-y-4 lg:gap-y-2">
+  <div :class="cn('', props.class)">
     <slot :product="data?.product" />
   </div>
 </template>
