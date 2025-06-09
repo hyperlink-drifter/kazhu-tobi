@@ -1,8 +1,8 @@
 import { GraphQLClient } from 'graphql-request';
 import { getSdk } from '@@/graphql/generated';
 
-const client = new GraphQLClient(
-  'https://vendure.hyperlink-drifter.com/shop-api'
-);
+const runtimeConfig = useRuntimeConfig();
+
+const client = new GraphQLClient(runtimeConfig.vendureShopApi);
 
 export const $v = getSdk(client);

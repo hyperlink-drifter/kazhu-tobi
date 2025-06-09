@@ -2,6 +2,7 @@
 import type {
   GetProductsQuery,
   GetCollectionProductsQuery,
+  GetProductsQueryVariables,
 } from '@@/graphql/generated';
 
 const route = useRoute();
@@ -18,29 +19,27 @@ const slug = route.params.slug[0];
 const { data } = await useFetch<GetCollectionProductsQuery>(
   '/api/v/collection-products',
   {
-    method: 'post',
-    body: {
-      variables: {
-        slug,
-      },
+    query: {
+      slug,
     },
   }
 );
 
 const xyz = computed(() => data.value?.search);
 
+const variables = computed<GetProductsQueryVariables>(() => ({
+  filter: {
+    id: {
+      in: xyz.value?.items.map((i) => `${i.productId}`),
+    },
+  },
+}));
+
 const { data: productList } = await useFetch<GetProductsQuery>(
   '/api/v/products',
   {
-    method: 'post',
-    body: {
-      variables: {
-        filter: {
-          id: {
-            in: xyz.value?.items.map((i) => `${i.productId}`),
-          },
-        },
-      },
+    query: {
+      variables: JSON.stringify(variables.value),
     },
   }
 );

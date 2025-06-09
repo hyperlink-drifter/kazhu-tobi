@@ -7,6 +7,7 @@ if (!route.params.slug?.length || !route.params.slug[0]) {
     statusMessage: 'Missing Product Handle',
   });
 }
+
 const slug = route.params.slug[0];
 </script>
 

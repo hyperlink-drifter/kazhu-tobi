@@ -1,10 +1,7 @@
 <script setup lang="ts">
 import type { GetProductsQuery } from '@@/graphql/generated';
 
-const { data } = await useFetch<GetProductsQuery>('/api/v/products', {
-  method: 'post',
-  body: {},
-});
+const { data } = await useFetch<GetProductsQuery>('/api/v/products');
 
 const products = computed(() => data.value?.products);
 
