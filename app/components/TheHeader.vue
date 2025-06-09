@@ -7,6 +7,8 @@ interface Props {
 }
 
 const props = defineProps<Props>();
+
+const isCartOpen = useState('is-cart-open', () => false);
 </script>
 
 <template>
@@ -30,7 +32,7 @@ const props = defineProps<Props>();
             <Button>
               <Heart />
             </Button>
-            <Button>
+            <Button @click="isCartOpen = !isCartOpen">
               <ShoppingCart />
             </Button>
           </div>

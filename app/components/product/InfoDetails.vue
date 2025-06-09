@@ -8,17 +8,10 @@ import { ShoppingCart } from 'lucide-vue-next';
 const props = defineProps<{ product: GetProductQuery['product'] }>();
 
 const route = useRoute();
-
 const { locale } = useI18n();
 
 const translation = computed(() =>
   props.product?.translations.find((t) => t.languageCode === locale.value)
-);
-
-const optionsInUrl = computed(() => Object.keys(route.query).length);
-
-const areOptionsSelected = computed(
-  () => optionsInUrl.value === props.product?.optionGroups.length
 );
 
 const computedVariant = computed(() => {

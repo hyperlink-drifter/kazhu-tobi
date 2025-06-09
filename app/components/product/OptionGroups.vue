@@ -9,7 +9,6 @@ const optionGroups = computed(() => props?.product?.optionGroups);
 
 const router = useRouter();
 const route = useRoute();
-
 const { locale } = useI18n();
 
 function toggleOption(name: string, value: string) {

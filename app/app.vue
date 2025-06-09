@@ -7,5 +7,6 @@
       <NuxtPage />
     </TheMain>
     <TheFooter />
+    <TheCartSheet />
   </NuxtLayout>
 </template>
