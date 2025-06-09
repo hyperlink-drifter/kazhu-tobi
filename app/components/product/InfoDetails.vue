@@ -24,7 +24,9 @@ const areOptionsSelected = computed(
 const computedVariant = computed(() => {
   const productVariants = props.product?.variants;
 
-  if (!productVariants || !optionsInUrl.value) return undefined;
+  if (!productVariants) return undefined;
+
+  if (productVariants.length === 1) return productVariants.at(0);
 
   return productVariants.find((variant) =>
     variant.options.every(
@@ -58,6 +60,7 @@ const addToCart = async () => {
         {{ $t('add-to-cart') }} <ShoppingCart />
       </Button>
       <div>
+        ....
         {{ computedVariant }}
       </div>
     </div>
