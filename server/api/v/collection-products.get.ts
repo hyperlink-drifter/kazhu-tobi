@@ -1,5 +1,3 @@
-import { $v } from '@@/server/utils/v';
-
 export default defineEventHandler(async (event) => {
   const { slug } = getQuery(event);
 
