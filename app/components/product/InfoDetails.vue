@@ -59,10 +59,6 @@ const addToCart = async () => {
       <Button @click="addToCart">
         {{ $t('add-to-cart') }} <ShoppingCart />
       </Button>
-      <div>
-        ....
-        {{ computedVariant }}
-      </div>
     </div>
   </div>
 </template>
