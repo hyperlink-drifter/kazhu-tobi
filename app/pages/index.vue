@@ -1,18 +1,5 @@
 <script setup lang="ts">
-import type { GetProductsQuery } from '@@/graphql/generated';
 import { ArrowRight } from 'lucide-vue-next';
-
-const { data } = await useFetch<GetProductsQuery>('/api/v/products');
-
-const products = computed(() => data?.value?.products);
-
-if (!products.value) {
-  throw createError({ statusCode: 404, statusMessage: 'Product Not Found' });
-}
-
-if (!products.value.items) {
-  throw createError({ statusCode: 404, statusMessage: 'Product Not Found' });
-}
 
 const instaPosts = [
   {
@@ -66,14 +53,16 @@ const instaPosts = [
     <h2 class="mb-4 text-2xl font-semibold">
       {{ $t('heading-bestsellers') }}
     </h2>
-    <LayoutReel class="l-reel-w sm:l-reel-w-sm md:l-reel-w-md">
-      <ProductTileCard
-        v-for="product in products?.items"
-        :key="JSON.stringify(product)"
-        class="h-inherit"
-        :product="product"
-      />
-    </LayoutReel>
+    <ProviderProducts v-slot="{ products }" as="div">
+      <LayoutReel class="l-reel-w sm:l-reel-w-sm md:l-reel-w-md">
+        <ProductTileCard
+          v-for="product in products"
+          :key="JSON.stringify(product)"
+          class="h-inherit"
+          :product="product"
+        />
+      </LayoutReel>
+    </ProviderProducts>
   </LayoutCenter>
   <LayoutCenter class="py-8 lg:py-12 bg-background">
     <h2 class="mb-4 text-2xl font-semibold">

@@ -1,10 +1,4 @@
 <script setup lang="ts">
-import type {
-  GetProductsQuery,
-  GetCollectionProductsQuery,
-  GetProductsQueryVariables,
-} from '@@/graphql/generated';
-
 const route = useRoute();
 
 if (!route.params.slug?.length || !route.params.slug[0]) {
@@ -15,41 +9,11 @@ if (!route.params.slug?.length || !route.params.slug[0]) {
 }
 
 const slug = route.params.slug[0];
-
-const { data } = await useFetch<GetCollectionProductsQuery>(
-  '/api/v/collection-products',
-  {
-    query: {
-      slug,
-    },
-  }
-);
-
-const xyz = computed(() => data.value?.search);
-
-const variables = computed<GetProductsQueryVariables>(() => ({
-  filter: {
-    id: {
-      in: xyz.value?.items.map((i) => `${i.productId}`),
-    },
-  },
-}));
-
-const { data: productList } = await useFetch<GetProductsQuery>(
-  '/api/v/products',
-  {
-    query: {
-      variables: JSON.stringify(variables.value),
-    },
-  }
-);
-
-const products = computed(() => productList.value?.products.items);
 </script>
 
 <template>
   <LayoutCenter class="py-8 md:py-12">
-    <ul class="grid grid-cols-12 gap-x-2 sm:gap-x-4 md:gap-y-4 gap-y-8">
+    <ProviderCollection :slug="slug" v-slot="{ products }" as="ul">
       <li
         v-for="product in products"
         :key="JSON.stringify(product)"
@@ -57,6 +21,6 @@ const products = computed(() => productList.value?.products.items);
       >
         <ProductTileCard :product="product" />
       </li>
-    </ul>
+    </ProviderCollection>
   </LayoutCenter>
 </template>
