@@ -1,4 +1,4 @@
-import { defineNuxtModule, createResolver, addPlugin } from '@nuxt/kit';
+import { defineNuxtModule } from '@nuxt/kit';
 import { generate } from '@graphql-codegen/cli';
 import type { CodegenConfig } from '@graphql-codegen/cli';
 
@@ -27,8 +27,6 @@ export default defineNuxtModule<ModuleOptions>({
   hooks: {},
   // The function holding your module logic, it can be asynchronous
   async setup() {
-    const { resolve } = createResolver(import.meta.url);
-
     const config: CodegenConfig = {
       schema: 'https://vendure.hyperlink-drifter.com/shop-api',
       documents: ['./**/*.{gql,graphql}'],
@@ -48,7 +46,5 @@ export default defineNuxtModule<ModuleOptions>({
     };
 
     await generate({ ...config, cwd: process.cwd() }, true);
-
-    addPlugin(resolve('runtime/plugin'));
   },
 });
