@@ -69,6 +69,7 @@ query GetProduct($id: ID, $slug: String) {
     variants {
       id
       sku
+      stockLevel
       options {
         id
         code

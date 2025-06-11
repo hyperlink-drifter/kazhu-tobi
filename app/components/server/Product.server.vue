@@ -19,15 +19,17 @@ const { data } = await useFetch<GetProductQuery>('/api/v/product', {
 if (!data.value) {
   throw createError({ statusCode: 404, statusMessage: 'Product Not Found' });
 }
+
+const product = computed(() => data.value?.product);
 </script>
 
 <template>
   <template v-if="as">
     <component :is="as" :class="cn('', props.class)">
-      <slot :product="data?.product" />
+      <slot :product="product" />
     </component>
   </template>
   <template v-else>
-    <slot :product="data?.product" />
+    <slot :product="product" />
   </template>
 </template>

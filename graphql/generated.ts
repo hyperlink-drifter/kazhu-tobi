@@ -3608,7 +3608,7 @@ export type GetProductQueryVariables = Exact<{
 }>;
 
 
-export type GetProductQuery = { __typename?: 'Query', product?: { __typename?: 'Product', id: string, name: string, slug: string, description: string, featuredAsset?: { __typename?: 'Asset', id: string, source: string, preview: string } | null, assets: Array<{ __typename?: 'Asset', id: string, source: string, preview: string }>, translations: Array<{ __typename?: 'ProductTranslation', id: string, slug: string, name: string, description: string, languageCode: LanguageCode }>, optionGroups: Array<{ __typename?: 'ProductOptionGroup', id: string, code: string, translations: Array<{ __typename?: 'ProductOptionGroupTranslation', languageCode: LanguageCode, name: string }>, options: Array<{ __typename?: 'ProductOption', id: string, code: string, translations: Array<{ __typename?: 'ProductOptionTranslation', languageCode: LanguageCode, name: string }> }> }>, variants: Array<{ __typename?: 'ProductVariant', id: string, sku: string, options: Array<{ __typename?: 'ProductOption', id: string, code: string, group: { __typename?: 'ProductOptionGroup', id: string, code: string } }> }> } | null };
+export type GetProductQuery = { __typename?: 'Query', product?: { __typename?: 'Product', id: string, name: string, slug: string, description: string, featuredAsset?: { __typename?: 'Asset', id: string, source: string, preview: string } | null, assets: Array<{ __typename?: 'Asset', id: string, source: string, preview: string }>, translations: Array<{ __typename?: 'ProductTranslation', id: string, slug: string, name: string, description: string, languageCode: LanguageCode }>, optionGroups: Array<{ __typename?: 'ProductOptionGroup', id: string, code: string, translations: Array<{ __typename?: 'ProductOptionGroupTranslation', languageCode: LanguageCode, name: string }>, options: Array<{ __typename?: 'ProductOption', id: string, code: string, translations: Array<{ __typename?: 'ProductOptionTranslation', languageCode: LanguageCode, name: string }> }> }>, variants: Array<{ __typename?: 'ProductVariant', id: string, sku: string, stockLevel: string, options: Array<{ __typename?: 'ProductOption', id: string, code: string, group: { __typename?: 'ProductOptionGroup', id: string, code: string } }> }> } | null };
 
 export const ActiveOrderFragmentDoc = gql`
     fragment ActiveOrder on Order {
@@ -3868,6 +3868,7 @@ export const GetProductDocument = gql`
     variants {
       id
       sku
+      stockLevel
       options {
         id
         code
