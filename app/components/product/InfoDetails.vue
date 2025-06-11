@@ -2,6 +2,7 @@
 import type { GetProductQuery } from '@@/graphql/generated';
 import { ShoppingCart, LoaderPinwheel } from 'lucide-vue-next';
 import { useAddItemToCart } from '@/pinia-colada/mutations/add-to-cart';
+import { VENDURE_OUT_OF_STOCK, PINIA_COLADA_LOADING } from '#shared/constants';
 
 const props = defineProps<{ product: GetProductQuery['product'] }>();
 
@@ -54,9 +55,16 @@ watch(
       <ProductOptionGroups :product="product" />
       <Button
         @click="addItemToCart"
-        :disabled="asyncStatus === 'loading' || !productVariantId"
+        :disabled="
+          asyncStatus === PINIA_COLADA_LOADING ||
+          !productVariantId ||
+          pickedVariant?.stockLevel === VENDURE_OUT_OF_STOCK
+        "
       >
-        <LoaderPinwheel v-if="asyncStatus === 'loading'" class="animate-spin" />
+        <LoaderPinwheel
+          v-if="asyncStatus === PINIA_COLADA_LOADING"
+          class="animate-spin"
+        />
         <ShoppingCart v-else />
         {{ $t('add-to-cart') }}
       </Button>
