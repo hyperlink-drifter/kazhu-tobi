@@ -15,25 +15,31 @@ const translation = computed(() =>
 
 const { addItemToCart, asyncStatus, productVariantId } = useAddItemToCart();
 
-watchEffect(() => {
+const pickedVariant = computed(() => {
   const productVariants = props.product?.variants;
 
   if (!productVariants) return undefined;
 
-  if (productVariants.length === 1 && productVariants[0]) {
-    return (productVariantId.value = productVariants[0].id);
-  }
+  if (productVariants.length === 1) return productVariants.at(0);
 
-  const pickedVariant = productVariants.find((variant) =>
+  return productVariants.find((variant) =>
     variant.options.every(
       (option) => option.code === route.query[option.group.code]
     )
   );
-
-  if (pickedVariant && pickedVariant.id) {
-    return (productVariantId.value = pickedVariant.id);
-  }
 });
+
+watch(
+  pickedVariant,
+  (newPickedVariant) => {
+    if (newPickedVariant && newPickedVariant.id) {
+      productVariantId.value = newPickedVariant.id;
+    } else {
+      productVariantId.value = '';
+    }
+  },
+  { immediate: true }
+);
 </script>
 
 <template>
@@ -46,7 +52,10 @@ watchEffect(() => {
       </h1>
       <div v-html="translation?.description" />
       <ProductOptionGroups :product="product" />
-      <Button @click="addItemToCart" :disabled="asyncStatus === 'loading'">
+      <Button
+        @click="addItemToCart"
+        :disabled="asyncStatus === 'loading' || !productVariantId"
+      >
         <LoaderPinwheel v-if="asyncStatus === 'loading'" class="animate-spin" />
         <ShoppingCart v-else />
         {{ $t('add-to-cart') }}
