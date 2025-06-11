@@ -3,6 +3,7 @@ import type { AddItemToOrderMutation } from '@@/graphql/generated';
 export const useAddItemToCart = defineMutation(() => {
   const productVariantId = ref('');
   const queryCache = useQueryCache();
+  const isCartOpen = useState('is-cart-open', () => false);
 
   const { mutate, ...mutation } = useMutation({
     mutation: (productVariantId: string) =>
@@ -16,6 +17,8 @@ export const useAddItemToCart = defineMutation(() => {
     async onSettled() {
       // Invalidate the query to refetch the new cart
       await queryCache.invalidateQueries({ key: ['cart'] });
+
+      isCartOpen.value = true;
     },
   });
 
