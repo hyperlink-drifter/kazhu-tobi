@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { ActiveOrderFragment } from '@@/graphql/generated';
+import type { ActiveOrderFragment, ProductVariant } from '@@/graphql/generated';
 
 const props = defineProps<{
   item: ActiveOrderFragment['lines'][0];
@@ -12,6 +12,14 @@ const tProduct = computed(() =>
     (t) => t.languageCode === locale.value
   )
 );
+
+const tOtions = computed(() => {
+  const options = props.item?.productVariant.options;
+  const t = options.map((o) =>
+    o.translations.find((t) => t.languageCode === locale.value)
+  );
+  return t;
+});
 </script>
 
 <template>
@@ -32,6 +40,15 @@ const tProduct = computed(() =>
       <div>
         <div>{{ tProduct?.name }}</div>
         <div>{{ item.linePriceWithTax }}</div>
+        <div>
+          <template
+            v-for="(option, index) in tOtions"
+            :key="JSON.stringify(option)"
+          >
+            <span>{{ option?.name }}</span>
+            <span v-if="index !== tOtions.length - 1">/ </span>
+          </template>
+        </div>
         <div class="md:hidden ml-auto">{{ item.quantity }}</div>
       </div>
     </div>

@@ -21,6 +21,13 @@ fragment ActiveOrder on Order {
     productVariant {
       id
       sku
+      options {
+        name
+        translations {
+          languageCode
+          name
+        }
+      }
       product {
         name
         description
