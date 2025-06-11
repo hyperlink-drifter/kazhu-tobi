@@ -1,6 +1,6 @@
 <template>
   <LayoutCenter>
-    <ProviderProducts
+    <ServerProducts
       v-slot="{ products }"
       as="ul"
       class="grid grid-cols-12 gap-x-2 sm:gap-x-4 gap-y-4"
@@ -12,6 +12,6 @@
       >
         <ProductTileCard :product="product" />
       </li>
-    </ProviderProducts>
+    </ServerProducts>
   </LayoutCenter>
 </template>

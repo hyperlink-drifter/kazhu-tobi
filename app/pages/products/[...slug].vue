@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const route = useRoute();
+const route = useRoute('collections-slug___uk___default');
 
 if (!route.params.slug?.length || !route.params.slug[0]) {
   throw createError({
@@ -13,8 +13,9 @@ const slug = route.params.slug[0];
 
 <template>
   <LayoutCenter class="py-8 md:py-12 bg-background">
-    <ProviderProduct
+    <ServerProduct
       :slug="slug"
+      as="div"
       v-slot="{ product }"
       class="grid grid-cols-12 gap-2 sm:gap-x-4 gap-y-4 lg:gap-y-2"
     >
@@ -28,6 +29,6 @@ const slug = route.params.slug[0];
         :product="product"
         class="grid grid-cols-subgrid col-span-12 lg:col-span-4 gap-2 sm:gap-4"
       />
-    </ProviderProduct>
+    </ServerProduct>
   </LayoutCenter>
 </template>

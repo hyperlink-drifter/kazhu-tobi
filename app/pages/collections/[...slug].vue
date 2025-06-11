@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const route = useRoute();
+const route = useRoute('collections-slug___uk___default');
 
 if (!route.params.slug?.length || !route.params.slug[0]) {
   throw createError({
@@ -13,7 +13,7 @@ const slug = route.params.slug[0];
 
 <template>
   <LayoutCenter class="py-8 md:py-12">
-    <ProviderCollection :slug="slug" v-slot="{ products }" as="ul">
+    <ServerCollection :slug="slug" v-slot="{ products }" as="ul">
       <li
         v-for="product in products"
         :key="JSON.stringify(product)"
@@ -21,6 +21,6 @@ const slug = route.params.slug[0];
       >
         <ProductTileCard :product="product" />
       </li>
-    </ProviderCollection>
+    </ServerCollection>
   </LayoutCenter>
 </template>

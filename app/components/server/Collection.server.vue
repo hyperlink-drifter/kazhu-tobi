@@ -12,9 +12,7 @@ interface Props {
   slug: string;
 }
 
-const props = withDefaults(defineProps<Props>(), {
-  as: 'ul',
-});
+const props = defineProps<Props>();
 
 const { data } = await useFetch<GetCollectionProductsQuery>(
   '/api/v/collection-products',
@@ -48,12 +46,20 @@ const products = computed(() => productList.value?.products.items);
 </script>
 
 <template>
-  <component
-    :is="as"
-    :class="
-      cn('grid grid-cols-12 gap-x-2 sm:gap-x-4 md:gap-y-4 gap-y-8', props.class)
-    "
-  >
+  <template v-if="as">
+    <component
+      :is="as"
+      :class="
+        cn(
+          'grid grid-cols-12 gap-x-2 sm:gap-x-4 md:gap-y-4 gap-y-8',
+          props.class
+        )
+      "
+    >
+      <slot :products="products" />
+    </component>
+  </template>
+  <template v-else>
     <slot :products="products" />
-  </component>
+  </template>
 </template>

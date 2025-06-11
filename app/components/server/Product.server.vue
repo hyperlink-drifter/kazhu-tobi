@@ -2,7 +2,13 @@
 import type { HTMLAttributes } from 'vue';
 import type { GetProductQuery } from '@@/graphql/generated';
 
-const props = defineProps<{ slug: string; class?: HTMLAttributes['class'] }>();
+interface Props {
+  as?: 'div';
+  class?: HTMLAttributes['class'];
+  slug: string;
+}
+
+const props = defineProps<Props>();
 
 const { data } = await useFetch<GetProductQuery>('/api/v/product', {
   query: {
@@ -16,7 +22,12 @@ if (!data.value) {
 </script>
 
 <template>
-  <div :class="cn('', props.class)">
+  <template v-if="as">
+    <component :is="as" :class="cn('', props.class)">
+      <slot :product="data?.product" />
+    </component>
+  </template>
+  <template v-else>
     <slot :product="data?.product" />
-  </div>
+  </template>
 </template>

@@ -53,7 +53,7 @@ const instaPosts = [
     <h2 class="mb-4 text-2xl font-semibold">
       {{ $t('heading-bestsellers') }}
     </h2>
-    <ProviderProducts v-slot="{ products }" as="div">
+    <ServerProducts v-slot="{ products }" as="div">
       <LayoutReel class="l-reel-w sm:l-reel-w-sm md:l-reel-w-md">
         <ProductTileCard
           v-for="product in products"
@@ -62,7 +62,7 @@ const instaPosts = [
           :product="product"
         />
       </LayoutReel>
-    </ProviderProducts>
+    </ServerProducts>
   </LayoutCenter>
   <LayoutCenter class="py-8 lg:py-12 bg-background">
     <h2 class="mb-4 text-2xl font-semibold">
