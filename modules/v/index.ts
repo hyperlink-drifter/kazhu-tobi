@@ -12,7 +12,7 @@ export interface ModuleOptions {
 export default defineNuxtModule<ModuleOptions>({
   meta: {
     // Usually the npm package name of your module
-    name: '@hyperlinkdrifter/v',
+    name: '@hyperlink-drifter/v',
     // The key in `nuxt.config` that holds your module options
     configKey: 'v',
     // Compatibility constraints
@@ -40,6 +40,12 @@ export default defineNuxtModule<ModuleOptions>({
           config: {
             rawRequest: true,
             useTypeImports: true,
+          },
+        },
+        'graphql/schema.graphql': {
+          plugins: ['schema-ast'],
+          config: {
+            includeDirectives: true,
           },
         },
       },

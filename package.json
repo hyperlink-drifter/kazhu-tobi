@@ -17,6 +17,8 @@
     "@nuxt/scripts": "0.11.6",
     "@nuxthub/core": "0.8.25",
     "@nuxtjs/i18n": "9.5.3",
+    "@pinia/colada-nuxt": "^0.2.1",
+    "@pinia/nuxt": "^0.11.1",
     "@tailwindcss/vite": "^4.1.4",
     "@unhead/vue": "^2.0.3",
     "@vueuse/core": "^13.1.0",
@@ -30,6 +32,7 @@
     "graphql-tag": "^2.12.6",
     "lucide-vue-next": "^0.503.0",
     "nuxt": "^3.17.4",
+    "pinia": "^3.0.3",
     "reka-ui": "^2.2.0",
     "shadcn-nuxt": "2.1.0",
     "tailwind-merge": "^3.2.0",
@@ -41,12 +44,15 @@
     "vue-router": "^4.5.0"
   },
   "devDependencies": {
+    "@0no-co/graphqlsp": "^1.12.16",
     "@graphql-codegen/cli": "^5.0.6",
+    "@graphql-codegen/schema-ast": "^4.1.0",
     "@graphql-codegen/typescript": "^4.1.6",
     "@graphql-codegen/typescript-graphql-request": "^6.3.0",
     "@graphql-codegen/typescript-operations": "^4.6.1",
     "@tailwindcss/typography": "^0.5.16",
     "typescript": "^5.8.3",
+    "unplugin-vue-router": "^0.12.0",
     "wrangler": "^4.14.3"
   },
   "pnpm": {

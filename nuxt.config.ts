@@ -10,6 +10,7 @@ export default defineNuxtConfig({
   },
 
   experimental: {
+    typedPages: true,
     componentIslands: {
       remoteIsland: true,
       selectiveClient: true,
@@ -32,6 +33,8 @@ export default defineNuxtConfig({
     'shadcn-nuxt',
     '@nuxthub/core',
     '@nuxt/scripts',
+    '@pinia/nuxt',
+    '@pinia/colada-nuxt',
   ],
 
   hub: {},

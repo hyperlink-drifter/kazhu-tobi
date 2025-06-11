@@ -20,8 +20,35 @@ fragment ActiveOrder on Order {
     linePriceWithTax
     productVariant {
       id
-      name
       sku
+      product {
+        name
+        description
+        languageCode
+        translations {
+          id
+          slug
+          name
+          description
+          languageCode
+        }
+        optionGroups {
+          id
+          code
+          translations {
+            languageCode
+            name
+          }
+          options {
+            id
+            code
+            translations {
+              languageCode
+              name
+            }
+          }
+        }
+      }
     }
     featuredAsset {
       id

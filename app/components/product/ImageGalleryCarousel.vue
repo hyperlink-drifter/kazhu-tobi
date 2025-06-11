@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { CarouselApi } from '@/components/ui/carousel';
 import { watchOnce } from '@vueuse/core';
+import type { EmblaCarouselType } from 'embla-carousel';
 
 defineProps<{ images: any[]; title?: string }>();
 
@@ -49,7 +50,7 @@ watchOnce(emblaMainApi, (emblaMainApi) => {
       </CarouselContent>
     </Carousel>
     <Carousel
-      @init-api="(val) => (emblaThumbnailApi = val)"
+      @init-api="(val: EmblaCarouselType | undefined) => (emblaThumbnailApi = val)"
       class="relative w-full col-span-12 md:col-span-2 md:order-first"
     >
       <CarouselContent class="flex flex-row md:flex-col gap-1 ml-0">

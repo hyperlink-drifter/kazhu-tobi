@@ -1,14 +1,10 @@
 <script lang="ts" setup>
 import type { HTMLAttributes } from 'vue';
-import { ShoppingCart, Heart, Search, User } from 'lucide-vue-next';
+import { Heart, Search, User } from 'lucide-vue-next';
 
-interface Props {
+const props = defineProps<{
   class?: HTMLAttributes['class'];
-}
-
-const props = defineProps<Props>();
-
-const isCartOpen = useState('is-cart-open', () => false);
+}>();
 </script>
 
 <template>
@@ -32,9 +28,7 @@ const isCartOpen = useState('is-cart-open', () => false);
             <Button>
               <Heart />
             </Button>
-            <Button @click="isCartOpen = !isCartOpen">
-              <ShoppingCart />
-            </Button>
+            <CartSheetTrigger />
           </div>
         </div>
       </slot>
