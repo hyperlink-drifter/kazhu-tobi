@@ -1,42 +1,39 @@
 <script lang="ts" setup>
-import type {
-  AddItemToOrderMutation,
-  GetProductQuery,
-} from '@@/graphql/generated';
-import { ShoppingCart } from 'lucide-vue-next';
+import type { GetProductQuery } from '@@/graphql/generated';
+import { ShoppingCart, LoaderPinwheel } from 'lucide-vue-next';
+import { useAddItemToCart } from '@/pinia-colada/mutations/add-to-cart';
 
 const props = defineProps<{ product: GetProductQuery['product'] }>();
 
 const route = useRoute();
+
 const { locale } = useI18n();
 
 const translation = computed(() =>
   props.product?.translations.find((t) => t.languageCode === locale.value)
 );
 
-const computedVariant = computed(() => {
+const { addItemToCart, asyncStatus, productVariantId } = useAddItemToCart();
+
+watchEffect(() => {
   const productVariants = props.product?.variants;
 
   if (!productVariants) return undefined;
 
-  if (productVariants.length === 1) return productVariants.at(0);
+  if (productVariants.length === 1 && productVariants[0]) {
+    return (productVariantId.value = productVariants[0].id);
+  }
 
-  return productVariants.find((variant) =>
+  const pickedVariant = productVariants.find((variant) =>
     variant.options.every(
       (option) => option.code === route.query[option.group.code]
     )
   );
-});
 
-const addToCart = async () => {
-  await $fetch<AddItemToOrderMutation>('/api/v/order/add-item', {
-    method: 'POST',
-    body: {
-      productVariantId: computedVariant!.value!.id,
-      quantity: 1,
-    },
-  });
-};
+  if (pickedVariant && pickedVariant.id) {
+    return (productVariantId.value = pickedVariant.id);
+  }
+});
 </script>
 
 <template>
@@ -49,8 +46,10 @@ const addToCart = async () => {
       </h1>
       <div v-html="translation?.description" />
       <ProductOptionGroups :product="product" />
-      <Button @click="addToCart">
-        {{ $t('add-to-cart') }} <ShoppingCart />
+      <Button @click="addItemToCart" :disabled="asyncStatus === 'loading'">
+        <LoaderPinwheel v-if="asyncStatus === 'loading'" class="animate-spin" />
+        <ShoppingCart v-else />
+        {{ $t('add-to-cart') }}
       </Button>
     </div>
   </div>

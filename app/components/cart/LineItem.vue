@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { ActiveOrderFragment, ProductVariant } from '@@/graphql/generated';
+import type { ActiveOrderFragment } from '@@/graphql/generated';
 
 const props = defineProps<{
   item: ActiveOrderFragment['lines'][0];

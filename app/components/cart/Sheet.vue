@@ -9,7 +9,7 @@ import {
   SheetHeader,
   SheetTitle,
 } from '@/components/ui/sheet';
-import { cartQuery } from '@/queries/cart';
+import { cartQuery } from '@/pinia-colada/queries/cart';
 
 const isCartOpen = useState('is-cart-open', () => false);
 

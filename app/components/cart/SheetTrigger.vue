@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { ShoppingCart } from 'lucide-vue-next';
-import { cartQuery } from '@/queries/cart';
+import { cartQuery } from '@/pinia-colada/queries/cart';
 
 const isCartOpen = useState('is-cart-open', () => false);
 
