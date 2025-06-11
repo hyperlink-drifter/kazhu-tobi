@@ -6,18 +6,6 @@ const instaPosts = [
     postId: 'C5x_B9Athe4',
     instaHandle: 'shoptime_24',
   },
-  {
-    postId: 'C5ddgqANmDz',
-    instaHandle: 'shoptime_24',
-  },
-  {
-    postId: 'DIlON2qtID3',
-    instaHandle: 'shoptime_24',
-  },
-  {
-    postId: 'DGv3tLtNNs_',
-    instaHandle: 'shoptime_24',
-  },
 ];
 </script>
 
