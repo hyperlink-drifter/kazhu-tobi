@@ -45,16 +45,18 @@ watch(
 
 <template>
   <div>
-    <div
-      class="col-span-12 lg:col-span-4 prose prose-sm sm:prose-base lg:prose-lg dark:prose-invert"
-    >
-      <h1>
-        {{ translation?.name }}
-      </h1>
-      <div v-html="translation?.description" />
+    <div class="col-span-12 lg:col-span-4">
+      <div class="prose prose-sm sm:prose-base lg:prose-lg dark:prose-invert">
+        <h1>
+          {{ translation?.name }}
+        </h1>
+        <div v-html="translation?.description" />
+      </div>
       <ProductOptionGroups :product="product" />
       <Button
         @click="addItemToCart"
+        class="w-full"
+        size="lg"
         :disabled="
           asyncStatus === PINIA_COLADA_LOADING ||
           !productVariantId ||
