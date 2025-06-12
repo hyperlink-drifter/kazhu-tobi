@@ -10,7 +10,7 @@
         :key="JSON.stringify(product)"
         class="col-span-6 md:col-span-4"
       >
-        <ProductTileCard :product="product" />
+        <ProductTile :product="product" />
       </li>
     </ServerProducts>
   </LayoutCenter>

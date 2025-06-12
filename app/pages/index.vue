@@ -43,7 +43,7 @@ const instaPosts = [
     </h2>
     <ServerProducts v-slot="{ products }" as="div">
       <LayoutReel class="l-reel-w sm:l-reel-w-sm md:l-reel-w-md">
-        <ProductTileCard
+        <ProductTile
           v-for="product in products"
           :key="JSON.stringify(product)"
           class="h-inherit"

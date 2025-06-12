@@ -25,7 +25,7 @@ const translation = computed(() =>
     class="block h-full"
   >
     <Card class="h-full py-0 rounded-none shadow-none border-none gap-4">
-      <ProductTileCardFigure :product="product" />
+      <ProductTileFigure :product="product" />
       <CardHeader class="px-0">
         <CardTitle>{{ translation?.name }}</CardTitle>
       </CardHeader>
