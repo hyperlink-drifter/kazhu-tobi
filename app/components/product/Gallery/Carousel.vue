@@ -2,6 +2,7 @@
 import type { CarouselApi } from '@/components/ui/carousel';
 import { watchOnce } from '@vueuse/core';
 import type { EmblaCarouselType } from 'embla-carousel';
+import UiCarousel from '@/components/ui/carousel/Carousel.vue';
 
 defineProps<{ images: any[]; title?: string }>();
 
@@ -31,7 +32,7 @@ watchOnce(emblaMainApi, (emblaMainApi) => {
 
 <template>
   <div data-slot="product-image-carousel">
-    <Carousel
+    <UiCarousel
       @init-api="(val) => (emblaMainApi = val)"
       class="relative w-full col-span-12 md:col-span-10"
     >
@@ -48,9 +49,9 @@ watchOnce(emblaMainApi, (emblaMainApi) => {
           </AspectRatio>
         </CarouselItem>
       </CarouselContent>
-    </Carousel>
-    <Carousel
-      @init-api="(val: EmblaCarouselType | undefined) => (emblaThumbnailApi = val)"
+    </UiCarousel>
+    <UiCarousel
+      @init-api="(val: EmblaCarouselType) => (emblaThumbnailApi = val)"
       class="relative w-full col-span-12 md:col-span-2 md:order-first"
     >
       <CarouselContent class="flex flex-row md:flex-col gap-1 ml-0">
@@ -73,6 +74,6 @@ watchOnce(emblaMainApi, (emblaMainApi) => {
           </div>
         </CarouselItem>
       </CarouselContent>
-    </Carousel>
+    </UiCarousel>
   </div>
 </template>

@@ -19,7 +19,7 @@ const slug = route.params.slug[0];
       v-slot="{ product }"
       class="grid grid-cols-12 gap-2 sm:gap-x-4 gap-y-4 lg:gap-y-2"
     >
-      <ProductImageGallery
+      <ProductGallery
         v-if="product?.assets"
         :images="product?.assets"
         :title="product.name"
