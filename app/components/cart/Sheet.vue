@@ -43,6 +43,12 @@ const { state } = useQuery(cartQuery);
         </ul>
       </div>
       <SheetFooter>
+        <div class="flex justify-between">
+          <span>{{ $t('total') }}</span>
+          <span>{{
+            formatCurrency(state.data?.activeOrder?.subTotalWithTax)
+          }}</span>
+        </div>
         <Button type="submit" size="lg"> <LockKeyhole />Checkout</Button>
       </SheetFooter>
     </SheetContent>
