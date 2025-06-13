@@ -50,10 +50,10 @@ watch(
         <h1>
           {{ translation?.name }}
         </h1>
-        <div v-html="translation?.description" />
         <div v-if="pickedVariant">
           {{ formatCurrency(pickedVariant.priceWithTax) }}
         </div>
+        <div v-html="translation?.description" />
       </div>
       <ProductOptionGroups :product="product" />
       <Button
