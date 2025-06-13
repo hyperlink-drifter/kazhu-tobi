@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import type { ActiveOrderFragment } from '@@/graphql/generated';
+import RemoveLineItem from './RemoveLineItem.vue';
 
 const props = defineProps<{
   item: ActiveOrderFragment['lines'][0];
@@ -49,9 +50,15 @@ const tOtions = computed(() => {
             <span v-if="index !== tOtions.length - 1">/ </span>
           </template>
         </div>
-        <div class="md:hidden ml-auto">{{ item.quantity }}</div>
+        <div class="md:hidden ml-auto">
+          {{ item.quantity }}
+          <RemoveLineItem :id="item.id" />
+        </div>
       </div>
     </div>
-    <div class="hidden md:block ml-auto">{{ item.quantity }}</div>
+    <div class="hidden md:block ml-auto">
+      {{ item.quantity }}
+      <RemoveLineItem :id="item.id" />
+    </div>
   </div>
 </template>
