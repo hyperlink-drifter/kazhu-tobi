@@ -70,6 +70,8 @@ query GetProduct($id: ID, $slug: String) {
       id
       sku
       stockLevel
+      price
+      priceWithTax
       options {
         id
         code

@@ -43,7 +43,7 @@ const { state } = useQuery(cartQuery);
         </ul>
       </div>
       <SheetFooter>
-        <Button type="submit" size="lg"> <LockKeyhole /> Checkout</Button>
+        <Button type="submit" size="lg"> <LockKeyhole />Checkout</Button>
       </SheetFooter>
     </SheetContent>
   </Sheet>

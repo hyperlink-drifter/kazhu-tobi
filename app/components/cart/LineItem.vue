@@ -40,7 +40,7 @@ const tOtions = computed(() => {
     <div class="flex">
       <div>
         <div>{{ tProduct?.name }}</div>
-        <div>{{ item.linePriceWithTax }}</div>
+        <div>{{ formatCurrency(item.linePriceWithTax) }}</div>
         <div>
           <template
             v-for="(option, index) in tOtions"
@@ -51,13 +51,13 @@ const tOtions = computed(() => {
           </template>
         </div>
         <div class="md:hidden ml-auto">
-          {{ item.quantity }}
+          <Button variant="ghost">{{ item.quantity }}</Button>
           <RemoveLineItem :id="item.id" />
         </div>
       </div>
     </div>
     <div class="hidden md:block ml-auto">
-      {{ item.quantity }}
+      <Button variant="ghost">{{ item.quantity }}</Button>
       <RemoveLineItem :id="item.id" />
     </div>
   </div>
