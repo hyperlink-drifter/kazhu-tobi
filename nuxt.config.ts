@@ -19,6 +19,10 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     vendureShopApi: process.env.NUXT_VENDURE_SHOP_API,
+    wayforpayUrl: process.env.WAYFORPAY_URL,
+    wayforpayMerchantAccount: process.env.WAYFORPAY_MERCHANT_ACCOUNT,
+    wayforpayMerchantDomainName: process.env.WAYFORPAY_MERCHANT_DOMAIN_NAME,
+    wayforpayMerchantSecretKey: process.env.WAYFORPAY_MERCHANT_SECRET_KEY,
   },
 
   css: ['~/assets/css/tailwind.css'],

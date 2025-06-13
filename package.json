@@ -17,6 +17,7 @@
     "@nuxt/scripts": "0.11.6",
     "@nuxthub/core": "0.8.25",
     "@nuxtjs/i18n": "9.5.3",
+    "@oslojs/crypto": "^1.0.1",
     "@pinia/colada-nuxt": "^0.2.1",
     "@pinia/nuxt": "^0.11.1",
     "@tailwindcss/vite": "^4.1.4",

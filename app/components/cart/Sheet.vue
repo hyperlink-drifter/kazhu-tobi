@@ -15,11 +15,15 @@ const isCartOpen = useState('is-cart-open', () => false);
 
 const { state } = useQuery(cartQuery);
 
-const hasLines = computed(
-  () =>
-    state.value.data?.activeOrder?.lines.length &&
-    state.value.data?.activeOrder?.lines.length > 0
-);
+const hasLines = computed(() => state.value.data?.activeOrder?.totalQuantity);
+const checkout = () => {
+  $fetch('/api/checkout', {
+    method: 'POST',
+    body: {
+      dki: true,
+    },
+  });
+};
 </script>
 
 <template>
@@ -62,7 +66,7 @@ const hasLines = computed(
               {{ formatCurrency(state.data?.activeOrder?.subTotalWithTax) }}
             </span>
           </div>
-          <Button type="submit" size="lg"> <LockKeyhole />Checkout</Button>
+          <ServerCheckout :order="state.data.activeOrder" />
         </template>
         <template v-else>
           <p>
