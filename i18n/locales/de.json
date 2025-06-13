@@ -11,5 +11,7 @@
   "add-to-cart": "In den Warenkorb",
   "cart": "Warenkorb",
   "remove": "Entfernen",
-  "total": "Insgesamt"
+  "total": "Insgesamt",
+  "your-cart-is-empty": "Dein Warenkorb ist leer",
+  "continue-shopping": "Weiter einkaufen"
 }

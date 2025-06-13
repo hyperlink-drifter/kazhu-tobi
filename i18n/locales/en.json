@@ -11,5 +11,7 @@
   "add-to-cart": "Add to cart",
   "cart": "Cart",
   "remove": "Remove",
-  "total": "In total"
+  "total": "In total",
+  "your-cart-is-empty": "Your cart is empty",
+  "continue-shopping": "Continue shopping"
 }

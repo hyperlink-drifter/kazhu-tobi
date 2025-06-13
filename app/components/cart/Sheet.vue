@@ -14,6 +14,12 @@ import { cartQuery } from '@/pinia-colada/queries/cart';
 const isCartOpen = useState('is-cart-open', () => false);
 
 const { state } = useQuery(cartQuery);
+
+const hasLines = computed(
+  () =>
+    state.value.data?.activeOrder?.lines.length &&
+    state.value.data?.activeOrder?.lines.length > 0
+);
 </script>
 
 <template>
@@ -21,35 +27,54 @@ const { state } = useQuery(cartQuery);
     <SheetContent as="aside" side="right">
       <SheetHeader class="flex flex-row justify-between">
         <SheetTitle>{{ $t('cart') }}</SheetTitle>
-        <SheetClose as-child>
-          <Button type="submit">
+        <SheetClose as-child v-if="hasLines">
+          <Button>
             <CircleX />
           </Button>
         </SheetClose>
       </SheetHeader>
-      <div class="grid gap-4 p-4 overflow-y-auto">
-        <div v-if="state.status === 'pending'">Loading...</div>
-        <div v-else-if="state.status === 'error'">
-          Error fetching user info: {{ state.error.message }}
+      <template v-if="hasLines">
+        <div class="grid gap-4 p-4 overflow-y-auto">
+          <div v-if="state.status === 'error'">
+            Error fetching user info: {{ state.error.message }}
+          </div>
+          <ul v-else class="flex flex-col gap-8 md:gap-6">
+            <li
+              v-for="line in state.data?.activeOrder?.lines"
+              :key="JSON.stringify(line)"
+              class="col-span-6 md:col-span-4"
+            >
+              <CartLineItem :item="line" />
+            </li>
+          </ul>
         </div>
-        <ul v-else class="flex flex-col gap-8 md:gap-6">
-          <li
-            v-for="line in state.data.activeOrder?.lines"
-            :key="JSON.stringify(line)"
-            class="col-span-6 md:col-span-4"
-          >
-            <CartLineItem :item="line" />
-          </li>
-        </ul>
-      </div>
+      </template>
       <SheetFooter>
-        <div class="flex justify-between">
-          <span>{{ $t('total') }}</span>
-          <span>{{
-            formatCurrency(state.data?.activeOrder?.subTotalWithTax)
-          }}</span>
-        </div>
-        <Button type="submit" size="lg"> <LockKeyhole />Checkout</Button>
+        <template
+          v-if="
+            state.data?.activeOrder?.lines.length &&
+            state.data?.activeOrder?.lines.length > 0
+          "
+        >
+          <div class="flex justify-between">
+            <span>{{ $t('total') }}</span>
+            <span>
+              {{ formatCurrency(state.data?.activeOrder?.subTotalWithTax) }}
+            </span>
+          </div>
+          <Button type="submit" size="lg"> <LockKeyhole />Checkout</Button>
+        </template>
+        <template v-else>
+          <p>
+            {{ $t('your-cart-is-empty') }}
+          </p>
+          <SheetClose as-child>
+            <Button variant="default" size="lg" class="w-full">
+              {{ $t('continue-shopping') }}
+              <CircleX />
+            </Button>
+          </SheetClose>
+        </template>
       </SheetFooter>
     </SheetContent>
   </Sheet>

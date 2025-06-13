@@ -11,5 +11,7 @@
   "add-to-cart": "Додати в кошик",
   "cart": "Кошик",
   "remove": "видалити",
-  "total": "Всього"
+  "total": "Всього",
+  "your-cart-is-empty": "Ваш кошик порожній",
+  "continue-shopping": "Продовжуйте покупки"
 }
