@@ -7,7 +7,7 @@ export const useAddItemToCart = defineMutation(() => {
 
   const { mutate, ...mutation } = useMutation({
     mutation: (productVariantId: string) =>
-      $fetch<AddItemToOrderMutation>('/api/v/order/add-item', {
+      $fetch<AddItemToOrderMutation>('/api/order/add-item', {
         method: 'POST',
         body: {
           productVariantId,

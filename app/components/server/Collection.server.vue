@@ -15,7 +15,7 @@ interface Props {
 const props = defineProps<Props>();
 
 const { data } = await useFetch<GetCollectionProductsQuery>(
-  '/api/v/collection-products',
+  '/api/collection-products',
   {
     query: {
       slug: props.slug,
@@ -34,7 +34,7 @@ const variables = computed<GetProductsQueryVariables>(() => ({
 }));
 
 const { data: productList } = await useFetch<GetProductsQuery>(
-  '/api/v/products',
+  '/api/products',
   {
     query: {
       variables: JSON.stringify(variables.value),

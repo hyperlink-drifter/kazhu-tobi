@@ -6,7 +6,7 @@ export const useRemoveItemFromCart = defineMutation(() => {
 
   const { mutate, ...mutation } = useMutation({
     mutation: (orderLineId: string) =>
-      $fetch<AddItemToOrderMutation>('/api/v/order/remove-item', {
+      $fetch<AddItemToOrderMutation>('/api/order/remove-item', {
         method: 'POST',
         body: {
           orderLineId,

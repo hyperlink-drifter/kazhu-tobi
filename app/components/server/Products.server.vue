@@ -9,7 +9,7 @@ interface Props {
 
 const props = defineProps<Props>();
 
-const { data } = await useFetch<GetProductsQuery>('/api/v/products');
+const { data } = await useFetch<GetProductsQuery>('/api/products');
 
 if (!data.value) {
   throw createError({ statusCode: 404, statusMessage: 'Product Not Found' });

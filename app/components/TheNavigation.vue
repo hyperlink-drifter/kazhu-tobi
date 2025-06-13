@@ -12,7 +12,7 @@ defineProps<Props>();
 
 const { locale } = useI18n();
 
-const { data } = await useFetch('/api/v/top-level-collections');
+const { data } = await useFetch('/api/top-level-collections');
 
 const collections = computed(() => data.value?.collections.items);
 
