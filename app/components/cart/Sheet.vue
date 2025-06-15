@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { CircleX, LockKeyhole } from 'lucide-vue-next';
+import { CircleX } from 'lucide-vue-next';
 import { Button } from '@/components/ui/button';
 import {
   Sheet,
@@ -11,7 +11,7 @@ import {
 } from '@/components/ui/sheet';
 import { cartQuery } from '@/pinia-colada/queries/cart';
 
-const isCartOpen = useState('is-cart-open', () => false);
+const { isOpen } = storeToRefs(useCartStore());
 
 const { state } = useQuery(cartQuery);
 
@@ -19,7 +19,7 @@ const hasLines = computed(() => state.value.data?.activeOrder?.totalQuantity);
 </script>
 
 <template>
-  <Sheet v-model:open="isCartOpen">
+  <Sheet v-model:open="isOpen">
     <SheetContent as="aside" side="right">
       <SheetHeader class="flex flex-row justify-between">
         <SheetTitle>{{ $t('cart') }}</SheetTitle>

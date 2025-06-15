@@ -1,5 +1,5 @@
 export const useCartStore = defineStore('cart', () => {
-  const count = ref(0);
+  const isOpen = ref(false);
 
-  return { count };
+  return { isOpen };
 });

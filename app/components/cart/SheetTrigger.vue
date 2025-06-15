@@ -2,13 +2,13 @@
 import { ShoppingCart } from 'lucide-vue-next';
 import { cartQuery } from '@/pinia-colada/queries/cart';
 
-const isCartOpen = useState('is-cart-open', () => false);
+const cart = useCartStore();
 
 const { refresh } = useQuery(cartQuery);
 </script>
 
 <template>
-  <Button @click="isCartOpen = !isCartOpen" @mouseenter="refresh">
+  <Button @click="cart.isOpen = !cart.isOpen" @mouseenter="refresh">
     <ShoppingCart />
   </Button>
 </template>
