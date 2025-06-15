@@ -19,7 +19,7 @@ const props = defineProps<{
           <TheNavigation />
           <div class="flex items-center gap-2">
             <TheLocaleSelector class="hidden lg:flex" />
-            <Button>
+            <!-- <Button>
               <Search />
             </Button>
             <Button class="hidden lg:flex">
@@ -27,7 +27,7 @@ const props = defineProps<{
             </Button>
             <Button>
               <Heart />
-            </Button>
+            </Button> -->
             <CartSheetTrigger />
           </div>
         </div>

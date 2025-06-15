@@ -83,9 +83,9 @@ watch(isLgAndLarger, (isLgAndLarger) => {
       </div>
       <DrawerFooter class="items-center">
         <div class="self-start flex flex-col gap-2">
-          <Button class="w-fit">
+          <!-- <Button class="w-fit">
             <User />
-          </Button>
+          </Button> -->
           <TheLocaleSelector />
         </div>
         <DrawerClose
