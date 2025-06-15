@@ -26,7 +26,9 @@ const localeCollections = computed(() => {
 });
 
 const isDrawerOpen = ref(false);
+
 const breakpoints = useBreakpoints(breakpointsTailwind);
+
 const isLgAndLarger = breakpoints.greaterOrEqual('lg');
 
 watch(isLgAndLarger, (isLgAndLarger) => {
