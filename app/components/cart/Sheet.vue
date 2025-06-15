@@ -16,14 +16,6 @@ const isCartOpen = useState('is-cart-open', () => false);
 const { state } = useQuery(cartQuery);
 
 const hasLines = computed(() => state.value.data?.activeOrder?.totalQuantity);
-const checkout = () => {
-  $fetch('/api/checkout', {
-    method: 'POST',
-    body: {
-      dki: true,
-    },
-  });
-};
 </script>
 
 <template>

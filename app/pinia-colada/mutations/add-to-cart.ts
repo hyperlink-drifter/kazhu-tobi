@@ -17,7 +17,6 @@ export const useAddItemToCart = defineMutation(() => {
     async onSettled() {
       // Invalidate the query to refetch the new cart
       await queryCache.invalidateQueries({ key: ['cart'] });
-
       isCartOpen.value = true;
     },
   });

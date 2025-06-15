@@ -15,12 +15,7 @@ interface Props {
 const props = defineProps<Props>();
 
 const { data } = await useFetch<GetCollectionProductsQuery>(
-  '/api/collection-products',
-  {
-    query: {
-      slug: props.slug,
-    },
-  }
+  `/api/collections/${props.slug}/products`
 );
 
 const xyz = computed(() => data.value?.search);

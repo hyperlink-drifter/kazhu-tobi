@@ -3,6 +3,7 @@ import type { HTMLAttributes } from 'vue';
 import { navigationMenuTriggerStyle } from '@/components/ui/navigation-menu';
 import { breakpointsTailwind, useBreakpoints } from '@vueuse/core';
 import { CircleX, AlignJustify, User } from 'lucide-vue-next';
+import { collectionsTopLevelQuery } from '@/pinia-colada/queries/collections/top-level';
 
 interface Props {
   class?: HTMLAttributes['class'];
@@ -12,9 +13,11 @@ defineProps<Props>();
 
 const { locale } = useI18n();
 
-const { data } = await useFetch('/api/top-level-collections');
+const { state: collectionsState } = useQuery(collectionsTopLevelQuery);
 
-const collections = computed(() => data.value?.collections.items);
+const collections = computed(
+  () => collectionsState.value.data?.collections.items
+);
 
 const localeCollections = computed(() => {
   return collections.value?.map((c) =>

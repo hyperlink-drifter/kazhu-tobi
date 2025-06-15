@@ -8,7 +8,7 @@ export default defineEventHandler(async (event) => {
   const token = headers.get('vendure-auth-token');
 
   if (token) {
-    setCookie(event, 'auth-token', token, { httpOnly: true });
+    setCookie(event, 'auth-token', token, { httpOnly: true, sameSite: true });
   }
 
   return data;

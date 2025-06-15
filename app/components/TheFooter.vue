@@ -1,12 +1,15 @@
 <script lang="ts" setup>
 import type { HTMLAttributes } from 'vue';
 import { Instagram } from 'lucide-vue-next';
+import { collectionsTopLevelQuery } from '@/pinia-colada/queries/collections/top-level';
 
 const { locale } = useI18n();
 
-const { data } = await useFetch('/api/top-level-collections');
+const { state: collectionsState } = useQuery(collectionsTopLevelQuery);
 
-const collections = computed(() => data.value?.collections.items);
+const collections = computed(
+  () => collectionsState.value.data?.collections.items
+);
 
 const localeCollections = computed(() => {
   return collections.value?.map((c) =>
