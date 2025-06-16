@@ -46,45 +46,44 @@ watch(isLgAndLarger, (isLgAndLarger) => {
       </Button>
     </DrawerTrigger>
     <DrawerContent>
-      <div class="p-4">
-        <NavigationMenu orientation="vertical" class="max-w-full justify-start">
-          <NavigationMenuList class="block">
-            <NavigationMenuItem
-              v-for="collection in localeCollections"
-              :key="`menu-${collection?.slug}`"
+      <NavigationMenu
+        orientation="vertical"
+        class="p-4 max-w-full justify-start"
+      >
+        <NavigationMenuList class="block">
+          <NavigationMenuItem
+            v-for="collection in localeCollections"
+            :key="`menu-${collection?.slug}`"
+          >
+            <NuxtLink
+              custom
+              v-slot="{ isActive, href, navigate }"
+              :to="
+                $localePath({
+                  name: 'collections-slug',
+                  params: {
+                    slug: collection?.slug,
+                  },
+                })
+              "
             >
-              <NuxtLink
-                custom
-                v-slot="{ isActive, href, navigate }"
-                :to="
-                  $localePath({
-                    name: 'collections-slug',
-                    params: {
-                      slug: collection?.slug,
-                    },
-                  })
-                "
-              >
-                <NavigationMenuLink
-                  :href
-                  :active="isActive"
-                  :class="`${navigationMenuTriggerStyle()} pl-0`"
-                  @click="(e: MouseEvent) => {
+              <NavigationMenuLink
+                :href
+                :active="isActive"
+                :class="`${navigationMenuTriggerStyle()} pl-0`"
+                @click="(e: MouseEvent) => {
                     navigate(e)
                     isDrawerOpen = false
                   }"
-                >
-                  {{ collection?.name }}
-                </NavigationMenuLink>
-              </NuxtLink>
-            </NavigationMenuItem>
-          </NavigationMenuList>
-        </NavigationMenu>
-      </div>
+              >
+                {{ collection?.name }}
+              </NavigationMenuLink>
+            </NuxtLink>
+          </NavigationMenuItem>
+        </NavigationMenuList>
+      </NavigationMenu>
       <DrawerFooter class="items-center">
-        <div class="self-start flex flex-col gap-2">
-          <TheLocaleSelector />
-        </div>
+        <TheLocaleSelector class="self-start" />
         <DrawerClose
           class="grid grid-cols-[1fr_auto_1fr] w-full md:w-md"
           as-child

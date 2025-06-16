@@ -50,13 +50,13 @@ const tOtions = computed(() => {
             <span v-if="index !== tOtions.length - 1">/ </span>
           </template>
         </div>
-        <div class="md:hidden ml-auto">
+        <div class="md:hidden ml-auto flex flex-col items-start">
           <Button variant="ghost">{{ item.quantity }}</Button>
           <RemoveLineItem :id="item.id" />
         </div>
       </div>
     </div>
-    <div class="hidden md:block ml-auto">
+    <div class="hidden md:flex ml-auto flex-col">
       <Button variant="ghost">{{ item.quantity }}</Button>
       <RemoveLineItem :id="item.id" />
     </div>

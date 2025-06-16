@@ -16,15 +16,11 @@ const removeItem = () => {
 </script>
 
 <template>
-  <div>
-    <Button
-      variant="link"
-      @click="removeItem"
-      :disabled="asyncStatus === PINIA_COLADA_LOADING && orderLineId === id"
-    >
-      <div>
-        {{ $t('remove') }}
-      </div>
-    </Button>
-  </div>
+  <Button
+    variant="link"
+    @click="removeItem"
+    :disabled="asyncStatus === PINIA_COLADA_LOADING && orderLineId === id"
+  >
+    {{ $t('remove') }}
+  </Button>
 </template>
