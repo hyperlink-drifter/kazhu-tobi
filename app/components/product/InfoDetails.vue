@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { GetProductQuery } from '@@/graphql/generated';
 import { ShoppingCart, LoaderPinwheel } from 'lucide-vue-next';
-import { useAddItemToCart } from '@/pinia-colada/mutations/add-to-cart';
+import { useAddItemToCart } from '@/pinia/colada/mutations/add-to-cart';
 import { VENDURE_OUT_OF_STOCK, PINIA_COLADA_LOADING } from '#shared/constants';
 
 const props = defineProps<{ product: GetProductQuery['product'] }>();

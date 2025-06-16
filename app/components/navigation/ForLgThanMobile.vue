@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { HTMLAttributes } from 'vue';
 import { navigationMenuTriggerStyle } from '@/components/ui/navigation-menu';
-import { collectionsTopLevelQuery } from '@/pinia-colada/queries/collections/top-level';
+import { collectionsTopLevelQuery } from '@/pinia/colada/queries/collections/top-level';
 
 interface Props {
   class?: HTMLAttributes['class'];

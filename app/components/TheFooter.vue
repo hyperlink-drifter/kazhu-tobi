@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { HTMLAttributes } from 'vue';
 import { Instagram } from 'lucide-vue-next';
-import { collectionsTopLevelQuery } from '@/pinia-colada/queries/collections/top-level';
+import { collectionsTopLevelQuery } from '@/pinia/colada/queries/collections/top-level';
 
 const { locale } = useI18n();
 

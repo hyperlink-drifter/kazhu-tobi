@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { useRemoveItemFromCart } from '@/pinia-colada/mutations/remove-from-cart';
+import { useRemoveItemFromCart } from '@/pinia/colada/mutations/remove-from-cart';
 import { PINIA_COLADA_LOADING } from '#shared/constants';
 
 const props = defineProps<{
