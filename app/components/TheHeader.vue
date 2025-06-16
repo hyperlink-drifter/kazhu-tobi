@@ -16,16 +16,12 @@ const props = defineProps<{
       <slot>
         <div class="flex gap-2 justify-between">
           <NavigationForMobile />
-          <NuxtLink
+          <NuxtLinkLocale
             class="inline-flex flex-col justify-center h-full px-4"
-            :to="
-              $localePath({
-                name: 'index',
-              })
-            "
+            to="index"
           >
             kazhu-tobi
-          </NuxtLink>
+          </NuxtLinkLocale>
           <NavigationForLgThanMobile />
           <div class="flex items-center gap-2 justify-end">
             <TheLocaleSelector class="hidden lg:flex" />

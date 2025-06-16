@@ -15,13 +15,11 @@ const translation = computed(() =>
 </script>
 
 <template>
-  <NuxtLink
-    :to="
-      $localePath({
-        name: 'products-slug',
-        params: { slug: product?.slug },
-      })
-    "
+  <NuxtLinkLocale
+    :to="{
+      name: 'products-slug',
+      params: { slug: product?.slug },
+    }"
     class="block h-full"
   >
     <Card class="h-full py-0 rounded-none shadow-none border-none gap-4">
@@ -35,5 +33,5 @@ const translation = computed(() =>
         </CardDescription>
       </CardContent>
     </Card>
-  </NuxtLink>
+  </NuxtLinkLocale>
 </template>

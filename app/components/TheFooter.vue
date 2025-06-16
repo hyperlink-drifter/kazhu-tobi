@@ -34,30 +34,22 @@ const props = defineProps<Props>();
               <h3 class="text-xl pb-2 font-semibold">{{ $t('products') }}</h3>
               <ul class="flex flex-col gap-1">
                 <li>
-                  <NuxtLink
-                    :to="
-                      $localePath({
-                        name: 'products',
-                      })
-                    "
-                  >
+                  <NuxtLinkLocale to="products">
                     {{ $t('shop-all') }}
-                  </NuxtLink>
+                  </NuxtLinkLocale>
                 </li>
                 <li
                   v-for="collection in localeCollections"
                   :key="`menu-${collection?.slug}`"
                 >
-                  <NuxtLink
-                    :to="
-                      $localePath({
-                        name: 'collections-slug',
-                        params: { slug: collection?.slug },
-                      })
-                    "
+                  <NuxtLinkLocale
+                    :to="{
+                      name: 'collections-slug',
+                      params: { slug: collection?.slug },
+                    }"
                   >
                     {{ collection?.name }}
-                  </NuxtLink>
+                  </NuxtLinkLocale>
                 </li>
               </ul>
             </section>

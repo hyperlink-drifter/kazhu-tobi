@@ -24,15 +24,9 @@ const instaPosts = [
           <h1 class="hyphens-auto max-w-md mb-2">
             {{ $t('welcome') }}
           </h1>
-          <NuxtLink
-            :to="
-              $localePath({
-                name: 'products',
-              })
-            "
-          >
+          <NuxtLinkLocale to="products">
             <Button as="div"> {{ $t('hero-cta') }} <ArrowRight /></Button>
-          </NuxtLink>
+          </NuxtLinkLocale>
         </template>
       </LayoutCover>
     </LayoutCenter>
