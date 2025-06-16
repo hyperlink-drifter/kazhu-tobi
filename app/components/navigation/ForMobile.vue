@@ -2,7 +2,7 @@
 import type { HTMLAttributes } from 'vue';
 import { navigationMenuTriggerStyle } from '@/components/ui/navigation-menu';
 import { breakpointsTailwind, useBreakpoints } from '@vueuse/core';
-import { CircleX, AlignJustify, User } from 'lucide-vue-next';
+import { CircleX, AlignJustify } from 'lucide-vue-next';
 import { collectionsTopLevelQuery } from '@/pinia-colada/queries/collections/top-level';
 
 interface Props {
@@ -83,9 +83,6 @@ watch(isLgAndLarger, (isLgAndLarger) => {
       </div>
       <DrawerFooter class="items-center">
         <div class="self-start flex flex-col gap-2">
-          <!-- <Button class="w-fit">
-            <User />
-          </Button> -->
           <TheLocaleSelector />
         </div>
         <DrawerClose
@@ -97,35 +94,4 @@ watch(isLgAndLarger, (isLgAndLarger) => {
       </DrawerFooter>
     </DrawerContent>
   </Drawer>
-  <NavigationMenu class="hidden lg:flex">
-    <NavigationMenuList class="h-full">
-      <NavigationMenuItem
-        v-for="collection in localeCollections"
-        :key="`menu-${collection?.slug}`"
-        class="h-full"
-      >
-        <NuxtLink
-          custom
-          v-slot="{ isActive, href, navigate }"
-          :to="
-            $localePath({
-              name: 'collections-slug',
-              params: {
-                slug: collection?.slug,
-              },
-            })
-          "
-        >
-          <NavigationMenuLink
-            :active="isActive"
-            :href
-            :class="`${navigationMenuTriggerStyle()} px-4 py-0 h-full`"
-            @click="navigate"
-          >
-            {{ collection?.name }}
-          </NavigationMenuLink>
-        </NuxtLink>
-      </NavigationMenuItem>
-    </NavigationMenuList>
-  </NavigationMenu>
 </template>
